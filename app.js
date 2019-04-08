@@ -1,28 +1,37 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-var app = express();
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let cors = require('cors');
+let app = express();
 
 app.use(cors());
-app.set('views', path.join(__dirname, 'views'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Set les routes avec le fichier js
-app.use('/', require('./routes/index'));
-app.use('/register', require('./routes/register'));
-app.use('/users', require('./routes/users'));
-app.use('/login', require('./routes/login'));
-app.use('/confirmUser', require('./routes/confirmUser'));
+// Set les routes public views
+// Pour ajouter un chemin vers un .html, copier coller la fonction ci-dessous et changer le nom du ficher
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/index.html'));
+});
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
+// Set les routes pour les API GET
+app.get('/api/users', require('./routes/api/users'), function (req, res) {
+    res.send(req.body);
+});
+
+// Set les routes pour les API POST
+app.post('/api/register', require('./routes/api/register'));
+app.post('/api/login', require('./routes/api/login'));
+app.post('/api/confirmUser', require('./routes/api/confirmUser'));
+
+module.exports = app;
+
+/*app.use(function (req, res, next) {
     next(createError(404));
 });
 
@@ -34,7 +43,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.end();
 });
-
-module.exports = app;
+*/
+// catch 404 and forward to error handler

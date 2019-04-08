@@ -1,16 +1,9 @@
-let express = require('express');
-let router = express.Router();
-let db = require('../modules/db');
+let User = require('../../modules/user');
 
-render();
-
-// Put all the db queries on a db module with all functions
-
-async function render() {
-    router.get('/', async function (req, res, next) {
-        let users = await db.getUsers();
-        res.render('users', {title: 'Users from the database', users: users});
-    });
-}
-
-module.exports = router;
+module.exports = async function (req, res) {
+    console.log(Date.UTC());
+    let userClass = new User();
+    let users = await userClass.getUsers();
+    res.set('Content-Type', 'application/json');
+    res.send(JSON.stringify(users));
+};

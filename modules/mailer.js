@@ -2,7 +2,7 @@ let nodemailer = require('nodemailer');
 let User = require('./user');
 let mailer = {};
 
-mailer.sendRegisterConfirmationLink = async function (user, hash) {
+mailer.sendRegisterConfirmationLink = async function (email, hash) {
     let userClass = new User();
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -13,9 +13,9 @@ mailer.sendRegisterConfirmationLink = async function (user, hash) {
     });
     let mailOptions = {
         from: 'dspproject18@gmail.com',
-        to: user.email,
+        to: email,
         subject: 'Account confirmation',
-        text: "http://localhost:3000/confirmUser/" + await userClass.getUserId(user.email) + "?hash=" + hash
+        text: "http://localhost:3000/confirmUser/" + await userClass.getUserId(email) + "?hash=" + hash
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {

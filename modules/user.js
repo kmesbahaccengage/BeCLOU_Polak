@@ -1,9 +1,10 @@
 let DB = require('./db');
-let sha256  = require('sha256');
+let sha256 = require('sha256');
 
 class User {
     constructor() {
     }
+
     async getUsers() {
         let users = await new Promise(async resolve => {
             DB.connection.query("SELECT * FROM users", function (err, result) {
@@ -25,9 +26,9 @@ class User {
         return user;
     };
 
-    async login(user) {
-        console.log("Login:" + user.email);
-        let userId = await this.getUserId(user.email);
+    async login(email, passwordInput) {
+        console.log("Login:" + email);
+        let userId = await this.getUserId(email);
         if (!userId) return null;
         console.log(userId);
         let {activated, password} = await new Promise(async resolve => {
@@ -36,8 +37,8 @@ class User {
                 resolve(result[0]);
             });
         });
-        if (password === sha256(user.password) && activated === 2) {
-            return await this.getUserInfo(user.email);
+        if (password === sha256(passwordInput) && activated === 2) {
+            return await this.getUserInfo(email);
         } else return null;
     };
 
@@ -72,25 +73,26 @@ class User {
             return false;
     };
 
-    async register(user, hash) {
-        console.log("Register:" + user.email);
+    async register(email, firstname, lastname, password, hash) {
+        console.log("Register:" + email);
         let response = await new Promise(async resolve => {
-            let sql = `INSERT INTO users (email, firstname, lastname) VALUES (\'${user.email}\', \'${user.firstname}\', \'${user.lastname}\')`;
+            let sql = `INSERT INTO users (email, firstname, lastname) VALUES (\'${email}\', \'${firstname}\', \'${lastname}\')`;
             DB.connection.query(sql, function (err, result) {
                 resolve(result);
             });
         });
         if (response) {
-            let userId = await this.getUserId(user.email);
+            let userId = await this.getUserId(email);
             await new Promise(async resolve => {
-                let sql = `INSERT INTO login (users_id, password, hash) VALUES (\'${userId}\', \'${sha256(user.password)}\', \'${hash}\')`;
+                let sql = `INSERT INTO login (users_id, password, hash) VALUES (\'${userId}\', \'${sha256(password)}\', \'${hash}\')`;
                 DB.connection.query(sql, function (err, result) {
                     if (err) throw err;
                     resolve(result);
                 });
             });
         }
-        return response ? this.getUserInfo(user.email) : null;
+        return response ? this.getUserInfo(email) : null;
     };
 }
+
 module.exports = User;
