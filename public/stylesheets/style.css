@@ -1,0 +1,30 @@
+body {
+    padding: 50px;
+    padding-top: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-align: center;
+    align-items: center;
+}
+
+a {
+    color: #00B7FF;
+}
+
+form {
+    margin: auto 0;
+}
+
+header{
+    background-color: azure;
+}
+#img-logo {
+    padding-top: 5px;
+    width: 10%;
+    margin: 0 auto;
+}
+
+#menu {
+    text-align: center;
+}
