@@ -3,10 +3,8 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let cors = require('cors');
 let app = express();
 
-app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -19,10 +17,28 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
+app.get('/signin', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/signin.html'));
+});
+
+app.get('/login', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/login.html'));
+});
+
+app.get('/setting', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/setting.html'));
+});
+
+app.get('/reverse', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/reverse.html'));
+});
+
 // Set les routes pour les API GET
 app.get('/api/users', require('./routes/api/users'), function (req, res) {
     res.send(req.body);
 });
+
+
 
 // Set les routes pour les API POST
 app.post('/api/register', require('./routes/api/register'));
