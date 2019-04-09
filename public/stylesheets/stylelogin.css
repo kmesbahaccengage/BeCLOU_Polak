@@ -1,0 +1,121 @@
+body, html{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #eff1f5;
+}
+
+
+/**
+*
+* Header
+*
+**/
+
+header{
+  width: 100%;
+  height: 125px;
+  background: rgb(255, 255, 255);
+  padding-top: 50px;
+}
+
+
+.logo{
+  position: relative;
+  width: 25%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.logo img{
+  width: 100%;
+  height: auto;
+}
+
+
+/**
+*
+* Title explain
+*
+**/
+section{
+  padding-left: 15%;
+  background-color: #eff1f5;
+}
+
+.title{
+  position: relative;
+  top: -30px;
+}
+
+.title h1{
+  font-family: 'Poppins', sans-serif;
+  font-size: 35px;
+  opacity: 0.85;
+  margin: 0;
+}
+
+.explain p{
+  opacity: 0.81;
+  font-family: 'Poppins', sans-serif;
+  color: #898989;
+}
+
+/**
+*
+* formulaire
+*
+**/
+
+.formulaire{
+  position: relative;
+  width: 85%;
+}
+
+.formul{
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.formul input{
+  padding: 0;
+  opacity: 0.53;
+  background-color: #eff1f5;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 2px solid rgb(65, 65, 65);
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.formul input:last-child{
+  border: none;
+  background-color: #2fba24;
+  opacity: 1;
+  margin: 0 20%;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+}
+
+/**
+*
+* Lien Deja un Compatible*
+**/
+
+.link-already{
+  width: 85%;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.link-already a{
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  padding: 10px 10px;
+}
