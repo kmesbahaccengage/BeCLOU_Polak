@@ -1,0 +1,116 @@
+body, html{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #eff1f5;
+}
+
+
+/**
+*
+* Header
+*
+**/
+
+header{
+  width: 100%;
+  height: 125px;
+  background: rgb(255, 255, 255);
+  padding-top: 50px;
+}
+
+
+.logo{
+  position: relative;
+  width: 25%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.logo img{
+  width: 100%;
+  height: auto;
+}
+
+
+/**
+*
+* Title explain
+*
+**/
+section{
+  padding-left: 15%;
+  background-color: #eff1f5;
+}
+
+.title{
+  position: relative;
+  top: -30px;
+}
+
+.title h1{
+  font-family: 'Poppins', sans-serif;
+  font-size: 35px;
+  opacity: 0.85;
+  margin: 0;
+}
+
+.explain p{
+  opacity: 0.81;
+  font-family: 'Poppins', sans-serif;
+  color: #898989;
+}
+
+/**
+*
+* picture
+*
+**/
+
+.picture{
+  position: absolute;
+  width: 40%;
+  height: auto;
+  left: 0px;
+  top: 35%;
+}
+
+.picture img{
+  width: 100%;
+  height: auto;
+}
+
+/**
+*
+* bouttons
+*
+**/
+
+.bouttons-paiement{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.bouttons-paiement button{
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.bouttons-paiement button:first-child{
+  background-color: rgba(70, 228, 60, 0.49);
+  border: solid 1px #979797;
+  font-family: 'Poppins', sans-serif;
+  color: #2fba24;
+  padding: 15px 15px;
+}
+
+.bouttons-paiement button:last-child{
+  background-color: rgb(255, 255, 255);
+  border: solid 1px #979797;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 15px 15px;
+}
