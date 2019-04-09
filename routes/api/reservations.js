@@ -62,7 +62,7 @@ module.exports = {
             default:
                 result = {};
         }
-        if(!result){
+        if (!result) {
             res.set('Content-Type', 'application/json');
             res.send(JSON.stringify(result));
         } else res.status(401).send("Couldn't get");

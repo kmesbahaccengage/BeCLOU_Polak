@@ -20,7 +20,7 @@
         <p>We will send you an email to confirm your registration.</p>
       </div>
       <div class="formulaire">
-        <form class="formul" action="" method="post">
+        <form class="formul" onsubmit="return register(event)">
           <input type="text" name="firstname" placeholder="Your FirstName" id="firstname" maxlength="30" />
           <input type="text" name="lastname" placeholder="Your LastName" id="lastname" maxlength="30" />
           <input type="Email" name="email" placeholder="Your Email" id="email" maxlength="50" />
@@ -32,5 +32,40 @@
         <a href="#">I already have an account</a>
       </div>
     </section>
+      <script>
+          // Faudra faire pratiquement la même chose pour le login
+
+          
+          // la fonction pour register quelqu'un
+         async function register(e){
+            e.preventDefault();
+            // on met les infos du formulaire dans un objet
+            let data = {
+                email: document.getElementById('email').value || '',
+                firstname: document.getElementById('firstname').value || '',
+                lastname: document.getElementById('lastname').value || '',
+                password: document.getElementById('password').value || ''
+            };
+            // on set l'url de l'api register
+            let url = '/api/register';
+            // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
+             // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
+            let res = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
+             // du coup si y a eu un 200, on peut continuer notre script
+             // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
+            if (res.status === 200) {
+                let response = await res.json();
+                alert("User created: " + response.email);
+            } else alert(res.status + " " + await res.text());
+            return false;
+        }
+      </script>
   </body>
 </html>
