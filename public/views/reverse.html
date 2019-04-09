@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Reverse Geocoding</title>
+    <style>
+      /* Balec du css pour le moment*/
+      #map {
+        height: 425px;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      #latlng {
+        width: 225px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Pour le test vu qu'on peut pas récup les données de la base, on les rentre à la main dans ce formulaire -->
+
+    <div id="floating-panel">
+      <input id="latlng" type="text" value="40.714224,-73.961452">
+      <input id="submit" type="button" value="Reverse Geocode">
+    </div>
+    <div id="map"></div>
+    <script>
+      // On initialise la map ici :
+        // On definit le zoom afin de voir tout Paris
+        // Les coordonnées de où sera centrée la maps
+        // On peut choisir la texture de map
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 48.857010, lng: 2.343724},
+          mapTypeId: 'terrain'
+        });
+
+        // On a besoin de ca pour faire le reverse
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+
+
+        // Ici on recupere les coordeonnées issues du formulaire au dessus
+                                                                                                  // TODO: Il faut ici récupérer les données issues de la base et non du formulaire
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeLatLng(geocoder, map, infowindow);
+        });
+      }
+
+      function geocodeLatLng(geocoder, map, infowindow) {                       // Les données issues de la base sont au format " 48.86, 2.32 " le séparateur est la virgule la latitude est en premier et la longitude en deuxieme
+        var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              map.setZoom(11);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+              });
+              infowindow.setContent(results[0].formatted_address);
+              var addressComplete = results[0].formatted_address;
+              var arrondissement = addressComplete.split(' ');                  // Ici on seprare l'adresse
+              console.log(arrondissement[3]);                                   // Pour récupérer le code postale, on choppe arrondissement[3]
+              infowindow.open(map, marker);                                                        // TODO: Il faut compter le nombre de vélo par arrondissement et voir où il y en a trop et où il y en a le moins
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAwxMsnJPAeam7mp7wfx-PnOhLkiLxK6s&callback=initMap">
+    </script>
+  </body>
+</html>
