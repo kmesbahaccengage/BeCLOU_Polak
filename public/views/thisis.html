@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Aieaieaie</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // On initialise la map ici :
+        // On definit le zoom afin de voir tout Paris
+        // Les coordonnées de où sera centrée la maps
+        // On peut choisir la texture de map
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 48.857010, lng: 2.343724},
+          mapTypeId: 'terrain'
+        });
+
+        // On definit les coordonnées des angles de notre polygone ici
+    /*    var premierCoords = [
+          {lat: 48.868117, lng: 2.324658},
+          {lat: 48.856632, lng: 2.325086},
+          {lat: 48.855060, lng: 2.337114},
+          {lat: 48.866966, lng: 2.336836}
+        ];
+*/
+        // On crée le polygon ici, à l'aide des angles definit précédement
+          // On peut choisir une couleur de fond, une opacité de fond
+          // La couleur du coutour, l'épaisseur, l'opacité
+    /*    var premArr = new google.maps.Polygon({
+          paths: premierCoords,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.5,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.3
+        });*/
+
+        // Une fois le polygone initialisé et créé, on le fout sur la map
+      //  premArr.setMap(map);
+
+
+
+
+        // Partie pour la geolocation
+        infoWindow = new google.maps.InfoWindow;
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+        //Pour les markers
+        setMarkers(map);
+      }
+
+      // Pour la geolocation
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+
+      //Positions des differents markers
+      var marqueurs = [
+        ['Louvre', 48.860433, 2.337991, 4],
+        ['Notre Dame', 48.852737, 2.350540, 5],
+        ['Rex', 48.870319, 2.347929, 3]
+      ];
+
+      // Definition des markers
+      function setMarkers(map) {
+        // Adds markers to the map.
+
+        // Marker sizes are expressed as a Size of X,Y where the origin of the image
+        // (0,0) is located in the top left of the image.
+
+        // Origins, anchor positions and coordinates of the marker increase in the X
+        // direction to the right and in the Y direction down.
+        var image = {
+          url: 'img/logo.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(20, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+        // Shapes define the clickable region of the icon. The type defines an HTML
+        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+        // The final coordinate closes the poly by connecting to the first coordinate.
+        var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };
+        for (var i = 0; i < marqueurs.length; i++) {
+          var marque = marqueurs[i];
+          var marker = new google.maps.Marker({
+            position: {lat: marque[1], lng: marque[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: marque[0],
+            zIndex: marque[3]
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAwxMsnJPAeam7mp7wfx-PnOhLkiLxK6s&callback=initMap">
+    </script>
+  </body>
+</html>
