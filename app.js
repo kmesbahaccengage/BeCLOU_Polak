@@ -3,20 +3,26 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let session = require('express-session');
 let app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session(
+        'secret':'keyboard-cat'
+    ))
 
 // Set les routes public views
 // Pour ajouter un chemin vers un .html, copier coller la fonction ci-dessous et changer le nom du ficher
 
 app.get('/', function (req, res) {
+
     //On set un cookie "name" avec la valeur "express", on le récupère dans le html avec document.cookies
-    res.cookie('name', 'express').sendFile(path.join(__dirname + '/public/views/index.html'));
+    res.cookie('user_id', 'express').sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
 app.get('/signin', function (req, res) {
