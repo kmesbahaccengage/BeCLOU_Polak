@@ -12,7 +12,9 @@ class Reservation {
     }
 
     async createReservation(userId, bikeId, beginAt, duration) {
-        if (await this.bike.getBikeStatus(bikeId) !== 1){
+        let bikeStatus = await this.bike.getBikeStatus(bikeId)
+        if (bikeStatus[0].status !== 1){
+            console.log("on sors");
             return false;
         }
         await this.bike.updateBikeStatus(bikeId, 2);
@@ -53,7 +55,7 @@ class Reservation {
     }
 
     async getLastReservationByUserId(userId) {
-        let query = `select * from reservations where users_id = ${userId} desc limit 1`;
+        let query = `select * from reservations where users_id = ${userId} order by id desc limit 1`;
         let reserv = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 if (err) result = null;
@@ -96,7 +98,7 @@ class Reservation {
         return bike_id;
     }
 
-    async getCreationDate() {
+    async getCreationDate(id) {
         let query = `select create_at from reservations where id = ${id}`;
         let createAt = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
@@ -107,7 +109,7 @@ class Reservation {
         return createAt;
     }
 
-    async getBeginDate() {
+    async getBeginDate(id) {
         let query = `select begin_at from reservations where id = ${id}`;
         let createAt = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
@@ -118,7 +120,7 @@ class Reservation {
         return createAt;
     }
 
-    async getDuration() {
+    async getDuration(id) {
         let query = `select duration from reservations where id = ${id}`;
         let duration = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
@@ -148,7 +150,7 @@ class Reservation {
     }
 
     async getCurrentReservations(){
-        let query = `select * from reservations where status where status < 3`;
+        let query = `select * from reservations where status < 3`;
         let reservations = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
