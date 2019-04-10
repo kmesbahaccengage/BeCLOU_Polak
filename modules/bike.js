@@ -56,7 +56,7 @@ class Bike {
 
     // PUTT
     async updateBikeStatus(id, status) {
-        let query =`UPDATE bikes SET status = ${status}`;
+        let query =`UPDATE bikes SET status = ${status} WHERE id = ${id}`;
         let bike = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err ? resolve(false)
