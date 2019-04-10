@@ -59,6 +59,14 @@ app.route('/api/reservations/:param')
     .post(reservations.post)
     .put(reservations.put);
 
+let bikes = require('./routes/api/bikes');
+app.route('/api/bikes/:param')
+    .get(bikes.get, function (req, res) {
+        res.send(req.body);
+    })
+    .post(bikes.post)
+    .post(bikes.put);
+
 app.put('/api/confirmUser/:user_id', require('./routes/api/confirmUser'));
 
 // Set les routes pour les API POST
