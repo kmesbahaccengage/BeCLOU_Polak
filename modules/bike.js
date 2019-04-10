@@ -70,7 +70,7 @@ class Bike {
     }
 
     // PUTT
-    async updateBikeLocation(id, district, longitude, latitude) {
+    async updateBikeLocalisation(id, district, longitude, latitude) {
         if (await this.getIsFunctionnal(id) == 0) {
             return false;
         }

@@ -2,13 +2,37 @@ let Bikes = require('../../modules/bike');
 
 module.exports = {
     post: async function (req, res) {
-        let {address, longitude, latitude} = req.body;
+        let {id, district, longitude, latitude} = req.body;
         let bike = new Bikes();
-        let response = await bike.createBike(address, longitude, latitude);
-        if (response) {
+        let result;
+        let message;
+        let error;
+
+        switch (req.params.param) {
+            case 'create':
+                result = await bike.createBike(district, longitude, latitude);
+                message = "Bike Created !";
+                error = "Couldn't create a bike !";
+                break;
+            case 'updatestatus':
+                result = await bike.updateBikeStatus(id);
+                message = "Status Bike Updated !";
+                error = "Failed update bike status";
+
+                break;
+            case 'updatelocalisation':
+                result = await bike.updateBikeLocalisation(id, district, longitude, latitude);
+                message = "Localisation Bike Updated !";
+                error = "Failed update bike localisation !";  
+                break;
+            default:
+                result = {};
+                break;
+        }
+        if (result) {
             res.set("Content-Type", "application/json");
-            res.send({ msg: "Bike created !"});
-        } else res.status(400).send("Couldn't create a bike !");
+            res.send({ msg: message});
+        } else res.status(400).send(error);
     },
     get: async function (req, res) {
         let bike = new Bikes();
@@ -33,7 +57,4 @@ module.exports = {
             res.send(JSON.stringify(result));
         } else res.status(401).send('Error');
     },
-    put: async function (req, res) {}
-    
-    
 };

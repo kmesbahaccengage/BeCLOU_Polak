@@ -64,8 +64,7 @@ app.route('/api/bikes/:param')
     .get(bikes.get, function (req, res) {
         res.send(req.body);
     })
-    .post(bikes.post)
-    .post(bikes.put);
+    .post(bikes.post);
 
 app.put('/api/confirmUser/:user_id', require('./routes/api/confirmUser'));
 
