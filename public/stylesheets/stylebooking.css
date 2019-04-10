@@ -39,13 +39,13 @@ header{
 *
 **/
 section{
-  padding-left: 15%;
   background-color: #eff1f5;
 }
 
 .title{
   position: relative;
   top: -30px;
+  padding-left: 9%;
 }
 
 .title h1{
@@ -57,8 +57,19 @@ section{
 
 .explain p{
   opacity: 0.81;
+  margin-top: 0;
   font-family: 'Poppins', sans-serif;
   color: #898989;
+}
+
+#booking_container {
+  height: 25%;
+}
+
+:target {
+  background-color: #2eba2442;
+  
+  color: #2fba24 !important;
 }
 
 /**
@@ -69,10 +80,10 @@ section{
 
 .picture{
   position: absolute;
-  width: 40%;
+  width: 188px;
   height: auto;
   left: 0px;
-  top: 35%;
+  top: 193px;
 }
 
 .picture img{
@@ -91,6 +102,18 @@ section{
   display: flex;
   flex-direction: column;
   width: 85%;
+  margin: 0 auto;
+  top: 80%;
+}
+
+.target {
+  text-align: center;
+  padding: 15;
+  border: solid 1px #979797;
+  color:  #979797;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .bouttons-paiement button{
@@ -99,12 +122,23 @@ section{
   margin-bottom: 20px;
 }
 
+#confirm_run {
+  bottom: 50px;
+  position: relative;
+  margin: 0 auto;
+}
+
 .bouttons-paiement button{
   background-color: rgb(255, 255, 255);
   border: solid 1px #979797;
   font-family: 'Poppins', sans-serif;
   color: rgba(0, 0, 0, 0.5);
   padding: 15px 15px;
+}
+
+#title_size {
+  font-size: 25px;
+  margin-top: 10px;
 }
 
 /**
@@ -116,20 +150,19 @@ section{
 .start{
   position: absolute;
   right: 0px;
-  top: 75%;
+  top: 82%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: #2fba24;
-  width: 40%;
+  align-items: center;
 }
 
 .left-start{
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
-  margin-top: 20px;
+  margin-left: 20px;
   font-family: 'Poppins', sans-serif;
   color: rgb(255, 255, 255);
 }

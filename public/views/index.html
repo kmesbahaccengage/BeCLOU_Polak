@@ -1,26 +1,110 @@
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BeClou</title>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../stylesheets/burger.css">
+        <link rel="stylesheet" href="../stylesheets/grid.css">
+        <link rel="stylesheet" href="../stylesheets/fonts.css">
+        <link rel="stylesheet" href="../stylesheets/media-queries.css">
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <link rel="stylesheet" href="../stylesheets/carousel.css">
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+        <meta charset="UTF-8">
+    <title>Hello</title>
 </head>
 <body>
-	<header>
-		<div class="logo">
-			<img src="images/logo.png" alt="">
-		</div>
-		<div class="navbar">
-			<ul>
-				<li><a class="active" href="#home">Home</a></li>
-				<li><a href="#news">News</a></li>
-				<li><a href="#contact">Contact</a></li>
-				<li><a href="#about">About</a></li>
-			</ul>
-		</div>
-	</header>
+        <div id="menu_resp" class="pure-g">
+                <div class="pure-u-1-3">
+                        <nav role="navigation">
+                                <div id="menuToggle">
+                                        <input type="checkbox" />
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <ul id="menu">
+                                          <p class="welcome_text">Hi!</p>
+                                          <a href="../views/booking.html"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                          <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>
+                                          <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                          <a href="https://erikterwan.com/" target="_blank"><li id="menu_content">Sign Out</li></a>
+                                        </ul>
+                                      </div>
+                </div>
+                <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+
+                <div class="pure-u-1-3">
+                </div>
+              </div>
+              <div id="menu_resp2" class="pure-g">
+                  
+                  <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+  
+                  <div class="pure-u-1-3">
+                  </div>
+
+                  <div class="pure-u-1-3">
+                    </div>
+                </div>
+            
+            <div class="pure-g" id="carousel_landing">
+                    <div id="landing_cont" class="pure-u-1-1">
+                        <p class="label_landing1">How it works ?</p>
+                            <div class="carousel" data-flickity='{ "fullscreen": true, "lazyLoad": 1 }'>
+                                    <div class="carousel-cell">
+                                      <img class="carousel-cell-image"
+                                        data-flickity-lazyload="../images/landing1.png" />
+                                        <p class="cell_1_title">Welcome ! </p>
+                                        <p class="cell_1_text">First, find your bike on the map</p>
+                                    </div>
+                                    <div class="carousel-cell">
+                                      <img class="carousel-cell-image"
+                                      data-flickity-lazyload="../images/landing2.png" />
+                                      <p class="cell_1_title">Welcome ! </p>
+                                      <p class="cell_1_text">Scan the QR Code on the map</p>
+                                    </div>
+                                    <div class="carousel-cell">
+                                      <img class="carousel-cell-image"
+                                      data-flickity-lazyload="../images/landing3.png" />
+                                      <p class="cell_1_title">Enjoy your ride ! </p>
+                                      <p class="cell_1_text">Don't forget to be safe</p>
+                                    </div>
+                                  </div>
+                                  
+                    </div>
+            </div>
+
+            <div id="desktop_landing" class="pure-g">
+              <div class="pure-u-1-1">
+                <p class="title_desktop">Enjoy Riding</p>
+                <p class="desc_desktop">Want to take a ride ? Beclou works only on your phone!</p>
+              </div>
+              <div class="pure-u-1-1" id="explain_desktop">
+                <div class="img_container">
+                  <img src="../images/1-desktop@3x.png">
+                  <h1 class="first">Welcome !</h1>
+                  <h2 class="second">First, find your bike on the map.</h2>
+                </div>
+                <div class="img_container">
+                    <img src="../images/2-desktop@3x.png">
+                    <h1 class="first">Scan it !</h1>
+                    <h2 class="second">Scan the QR code on the bike.</h2>
+                </div>
+                <div class="img_container">
+                    <img src="../images/3-desktop@3x.png">
+                    <h1 class="first">Enjoy your ride! </h1>
+                    <h2 class="second">Don’t forget to be safe.</h2>
+                  </div>
+                </div>
+            </div>
+            <div id="start" class="pure-u-1-1">
+                <button class="start_button">Start now</button>
+            </div>
+          </div>
+
+            <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
 </body>
 </html>

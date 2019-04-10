@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BeClou</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylelogin.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylebooking.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../stylesheets/fonts.css">
     <link rel="stylesheet" href="../stylesheets/carousel.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   </head>
   <body>
@@ -27,7 +26,7 @@
                                   <span></span>
                                   <ul id="menu">
                                     <p class="welcome_text">Hi!</p>
-                                    <a href="../views/signin.html"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                    <a href="../views/booking.html"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
                                     <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>
                                     <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
                                     <a href="https://erikterwan.com/" target="_blank"><li id="menu_content">Sign Out</li></a>
@@ -39,21 +38,22 @@
           <div class="pure-u-1-3">
           </div>
       </div>
-    <section class="content_app">
+    <section id="booking_container" class="content_app">
+      
       <div class="title explain">
-        <h1>Log In</h1>
-        <p>We will send you an email to confirm your registration.</p>
+        <h1 id="title_size">Booking has expired</h1>
+        <p>Prolong it? Click here</p>
       </div>
-      <div class="formulaire">
-        <form class="formul" action="" method="post">
-          <input type="Email" name="email" placeholder="Your Email" id="email" maxlength="50" />
-          <input type="password" name="password" placeholder="Your Password" id="password" maxlength="50">
-          <input type="submit" name="submit" id="submit" value="Connexion">
-        </form>
+      <div class="picture">
+        <img src="../images/group-41-copy-3.svg" alt="">
       </div>
-      <div class="link-already">
-        <a href="#">I don't have an account</a>
-      </div>
+    <div class="bouttons-paiement" style="margin-top: 50px;">
+        <!-- <button type="button" name="paiement">€1 - 1 hours</button>
+        <button type="button" name="cancel">€11 - 12 hours</button>
+        <button type="button" name="cancel">€20 - 24 hours</button>-->
+        <a href='#target1' id='target1' class='target'>Book again</a>
+        <a href='#target2' id='target2' class='target'>Cancel</a>
+      </div> 
     </section>
   </body>
 </html>

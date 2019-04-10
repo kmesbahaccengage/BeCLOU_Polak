@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.welcome_text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  z-index: 20;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+.welcome_text, #menu_content, #select_bike  {
+    padding-left: 50px !important;
+}
+
+#menu_content {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    z-index: 20;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+#bikeicon {
+    width: 36px;
+    margin-top: 20px;
+}
+
+#icon_menu {
+    width: 24px;
+    margin-right: 10px;
+
+}
