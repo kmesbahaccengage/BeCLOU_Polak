@@ -59,11 +59,11 @@ app.route('/api/reservations/:param')
     .post(reservations.post)
     .put(reservations.put);
 
+app.put('/api/confirmUser/:user_id', require('./routes/api/confirmUser'));
 
 // Set les routes pour les API POST
 app.post('/api/register', require('./routes/api/register'));
 app.post('/api/login', require('./routes/api/login'));
-app.post('/api/confirmUser', require('./routes/api/confirmUser'));
 module.exports = app;
 
 /*app.use(function (req, res, next) {

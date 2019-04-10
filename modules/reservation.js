@@ -13,33 +13,30 @@ class Reservation {
         let query = `insert into reservations (users_id, bikes_id, begin_at, duration) values (${userId}, ${bikeId}, '${beginAt}', ${duration})`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
-                if (err){
-                    result = null;
-                    console.log(err);
-                }
+                if (err) resolve(false);
                 resolve(result);
             });
         });
-        return reservation ? true : false;
+        return reservation;
     }
 
     async updateStatus(id, status) {
         let query = `update reservations set status = ${status} where id = ${id}`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
-                if (err) result = null;
-                resolve(result);
+                err || !result.length ? resolve(false)
+                    : resolve(result);
             });
         });
-        return reservation ? true : false;
+        return reservation;
     }
 
-    async getLastReservationByUserId(userId){
+    async getLastReservationByUserId(userId) {
         let query = `select * from reservations where users_id = ${userId} desc limit 1`;
         let reserv = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 if (err) result = null;
-                resolve(result[0]);
+                resolve(result);
             });
         });
         return reserv;
@@ -50,7 +47,7 @@ class Reservation {
         let status = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
-                    : resolve(result[0]);
+                    : resolve(result);
             });
         });
         return status;
@@ -61,7 +58,7 @@ class Reservation {
         let user_id = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
-                    : resolve(result[0]);
+                    : resolve(result);
             });
         });
         return user_id;
@@ -72,7 +69,7 @@ class Reservation {
         let bike_id = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
-                    : resolve(result[0]);
+                    : resolve(result);
             });
         });
         return bike_id;
@@ -83,7 +80,7 @@ class Reservation {
         let createAt = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
-                    : resolve(result[0]);
+                    : resolve(result);
             });
         });
         return createAt;
@@ -111,30 +108,30 @@ class Reservation {
         return duration;
     }
 
-    async getTimeLeft(id){
+    async getTimeLeft(id) {
         let beginAt = await this.getBeginDate();
         let duration = await this.getDuration();
 
         // faire le calcul avec l'heure + l'heure du begin en comparant bien si ça change de jour
     }
 
-    async getReservationsByUserId(userId){
+    async getReservationsByUserId(userId) {
         let query = `select * from reservations where users_id = ${userId}`;
         let reservations = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
-                    : resolve(result[0]);
+                    : resolve(result);
             });
         });
         return reservations;
     }
 
-    async getAllReservations(){
+    async getAllReservations() {
         let query = `select * from reservations`;
         let reservations = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
-                    : resolve(result[0]);
+                    : resolve(result);
             });
         });
         return reservations;

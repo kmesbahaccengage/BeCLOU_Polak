@@ -8,8 +8,8 @@ module.exports = async function (req, res) {
     let hash = sha256("L6Y&JsfJ#KURxuRj" + email + Date.now());
     let response = await user.register(email, firstname, lastname, password, hash);
     if (response) {
-        mailer.sendRegisterConfirmationLink(email, hash);
-        console.log("send" + response);
+        await mailer.sendRegisterConfirmationLink(email, hash);
+        console.log("send " + email);
         res.set('Content-Type', 'application/json');
         res.send(response);
     } else {

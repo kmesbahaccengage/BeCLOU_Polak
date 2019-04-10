@@ -17,57 +17,59 @@ voili voilou
 
 j'te laisse regarder
  */
-module.exports = {
-    post: async function (req, res) {
-        let {userId, bikeId, beginAt, duration} = req.body;
-        let reservation = new Reservations();
-        let response = await reservation.createReservation(userId, bikeId, beginAt, duration);
-        if (response) {
-            res.set('Content-Type', 'application/json');
-            res.send(
-                {
-                    msg: "Reservation created"
-                }
-            );
-        } else res.status(401).send("Couldn't create a reservation");
-    },
-    get: async function (req, res) {
-        let reserv = new Reservations();
-        let result;
+module.exports =
+    {
+        post: async function (req, res) {
+            let {userId, bikeId, beginAt, duration} = req.body;
+            let reservation = new Reservations();
+            let response = await reservation.createReservation(userId, bikeId, beginAt, duration);
+            if (response) {
+                res.set('Content-Type', 'application/json');
+                res.send(
+                    {
+                        msg: "Reservation created"
+                    }
+                );
+            } else res.status(400).send("Couldn't create a reservation");
+        },
+        get: async function (req, res) {
+            let reserv = new Reservations();
+            let result;
 
-        switch (req.params.param) {
-            case 'bike':
-                result = await reserv.getBike(req.query.id);
-                break;
-            case 'status':
-                result = await reserv.getStatus(req.query.id);
-                break;
-            case 'userid':
-                result = await reserv.getUserId(req.query.id);
-                break;
-            case 'creationdate':
-                result = await reserv.getCreationDate(req.query.id);
-                break;
-            case 'begindate':
-                result = await reserv.getBeginDate(req.query.id);
-                break;
-            case 'lastreservation':
-                result = await reserv.getLastReservationByUserId(req.query.user_id);
-                break;
-            case 'all':
-                if (!req.query.user_id)
-                    result = await reserv.getAllReservations();
-                else result = await reserv.getReservationsByUserId(req.query.user_id);
-                break;
-            default:
-                result = {};
+            switch (req.params.param) {
+                case 'bike':
+                    result = await reserv.getBike(req.query.id);
+                    break;
+                case 'status':
+                    result = await reserv.getStatus(req.query.id);
+                    break;
+                case 'userid':
+                    result = await reserv.getUserId(req.query.id);
+                    break;
+                case 'creationdate':
+                    result = await reserv.getCreationDate(req.query.id);
+                    break;
+                case 'begindate':
+                    result = await reserv.getBeginDate(req.query.id);
+                    break;
+                case 'lastreservation':
+                    result = await reserv.getLastReservationByUserId(req.query.user_id);
+                    break;
+                case 'all':
+                    if (!req.query.user_id)
+                        result = await reserv.getAllReservations();
+                    else result = await reserv.getReservationsByUserId(req.query.user_id);
+                    break;
+                default:
+                    result = {};
+                    break;
+            }
+            if (result) {
+                res.set('Content-Type', 'application/json');
+                res.send(JSON.stringify(result));
+            } else res.status(400).send("Couldn't get");
+        },
+        put: async function () {
+
         }
-        if (!result) {
-            res.set('Content-Type', 'application/json');
-            res.send(JSON.stringify(result));
-        } else res.status(401).send("Couldn't get");
-    },
-    put: async function () {
-
-    }
-};
+    };

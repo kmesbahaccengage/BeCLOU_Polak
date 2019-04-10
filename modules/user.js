@@ -37,7 +37,7 @@ class User {
                 resolve(result[0]);
             });
         });
-        if (password === sha256(passwordInput) && activated === 2) {
+        if (password === sha256(passwordInput) && activated === 1) {
             return await this.getUserInfo(email);
         } else return null;
     };
@@ -62,7 +62,7 @@ class User {
             });
         });
         if (hash === response) {
-            let sql = `UPDATE login SET activated = 2 where users_id = \'${userId}\'`;
+            let sql = `UPDATE login SET activated = 1 where users_id = \'${userId}\'`;
             await new Promise(async resolve => {
                 DB.connection.query(sql, function (err, result, fields) {
                     resolve();
@@ -76,7 +76,7 @@ class User {
     async register(email, firstname, lastname, password, hash) {
         console.log("Register:" + email);
         let response = await new Promise(async resolve => {
-            let sql = `INSERT INTO users (email, firstname, lastname) VALUES (\'${email}\', \'${firstname}\', \'${lastname}\')`;
+            let sql = `INSERT INTO users (email, firstname, lastname) VALUES ('${email}', '${firstname}', '${lastname}')`;
             DB.connection.query(sql, function (err, result) {
                 resolve(result);
             });
@@ -84,7 +84,7 @@ class User {
         if (response) {
             let userId = await this.getUserId(email);
             await new Promise(async resolve => {
-                let sql = `INSERT INTO login (users_id, password, hash) VALUES (\'${userId}\', \'${sha256(password)}\', \'${hash}\')`;
+                let sql = `INSERT INTO login (users_id, password, hash) VALUES ('${userId}', '${sha256(password)}', '${hash}')`;
                 DB.connection.query(sql, function (err, result) {
                     if (err) throw err;
                     resolve(result);
