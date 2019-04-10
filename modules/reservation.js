@@ -1,4 +1,5 @@
 let DB = require('./db');
+let Bike = require('/.bike');
 //let User = require('./user');
 //let Bike = require('./bike');
 const STATUS_BOOKED = 1;
@@ -6,10 +7,16 @@ const STATUS_USED = 2;
 const STATUS_FINISHED = 3;
 
 class Reservation {
+    bike;
     constructor() {
+        this.bike = new Bike();
     }
 
     async createReservation(userId, bikeId, beginAt, duration) {
+        if (await this.bike.getBikeStatus(bikeId) !== 1){
+            return false;
+        }
+        await this.bike.updateBikeStatus(bikeId, 2);
         let query = `insert into reservations (users_id, bikes_id, begin_at, duration) values (${userId}, ${bikeId}, '${beginAt}', ${duration})`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
@@ -20,7 +27,21 @@ class Reservation {
         return reservation;
     }
 
+    async cancelReservation(id){
+        let status = await this.getStatus(id)[0].status;
+        let bikeId = await this.getBike(id);
+        if (status !== 1){
+            return false
+        }
+        await this.updateStatus(id, 4);
+        await this.bike.updateBikeStatus(bikeId, 1);
+        return true;
+    }
     async updateStatus(id, status) {
+        let bikeId = await this.getBike(id);
+        if (status === 3){
+            await this.bike.updateBikeStatus(bikeId, 1);
+        }
         let query = `update reservations set status = ${status} where id = ${id}`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
@@ -117,6 +138,17 @@ class Reservation {
 
     async getReservationsByUserId(userId) {
         let query = `select * from reservations where users_id = ${userId}`;
+        let reservations = await new Promise(async resolve => {
+            DB.connection.query(query, function (err, result) {
+                err || !result.length ? resolve(false)
+                    : resolve(result);
+            });
+        });
+        return reservations;
+    }
+
+    async getCurrentReservations(){
+        let query = `select * from reservations where status where status < 3`;
         let reservations = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)

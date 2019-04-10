@@ -23,14 +23,24 @@ module.exports =
             let {id, userId, bikeId, beginAt, duration, status} = req.body;
             let reserv = new Reservations();
             let result;
+            let error;
+            let message;
 
-            console.log(req.params.param);
-            switch (req.params.param){
+            switch (req.params.param) {
                 case 'create':
                     result = await reserv.createReservation(userId, bikeId, beginAt, duration);
+                    message = "Reservation created";
+                    error = "Couldn't create a reservation";
                     break;
                 case 'update':
-                    result = await reserv.updateStatus(id, status);
+                    result = await reserv.updateStatus(id, status, bikeId);
+                    message = "Reservation " + id + " updated";
+                    error = "Couldn't update the reservation " + id;
+                    break;
+                case 'cancel':
+                    result = await reserv.cancelReservation(id);
+                    message = "Reservation " + id + " canceled";
+                    error = "Couldn't cancel the reservation " + id;
                     break;
                 default:
                     result = {};
@@ -38,13 +48,8 @@ module.exports =
             }
             if (result) {
                 res.set('Content-Type', 'application/json');
-                res.send(
-                    {
-                        msg: req.params.param === 'create' ? "Reservation created"
-                            : "Reservation updated"
-                    }
-                );
-            } else res.status(400).send("Couldn't POST a reservation");
+                res.send({msg: message});
+            } else res.status(400).send(error);
         },
         get: async function (req, res) {
             let reserv = new Reservations();
@@ -68,6 +73,9 @@ module.exports =
                     break;
                 case 'lastreservation':
                     result = await reserv.getLastReservationByUserId(req.query.user_id);
+                    break;
+                case 'current':
+                    result = await reserv.getCurrentReservations();
                     break;
                 case 'all':
                     if (!req.query.user_id)
