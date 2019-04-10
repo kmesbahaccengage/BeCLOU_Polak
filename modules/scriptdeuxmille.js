@@ -7,7 +7,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -18,7 +18,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -29,7 +29,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -40,7 +40,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -51,7 +51,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -79,7 +79,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -90,7 +90,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -101,7 +101,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -112,7 +112,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -123,7 +123,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -156,7 +156,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -167,7 +167,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -178,7 +178,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -189,7 +189,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -200,7 +200,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -233,7 +233,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -244,7 +244,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -255,7 +255,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -266,7 +266,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -277,7 +277,7 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   console.log(rand);
 }
@@ -317,10 +317,10 @@ for (var i = 0; i < 100; i++) {
           position: latlng,
           map: map
         });
-        infowindow.setContent(results[0].formatted_address);
-        var addressComplete = results[0].formatted_address;
+        infowindow.setContent(results[0].formatted_district);
+        var districtComplete = results[0].formatted_district;
         return adress;
-        var arrondissement = addressComplete.split(' ');                  // Ici on seprare l'adresse
+        var arrondissement = districtComplete.split(' ');                  // Ici on seprare l'adresse
         console.log(arrondissement[3]);                                   // Pour récupérer le code postale, on choppe arrondissement[3]
         infowindow.open(map, marker);                                                        // TODO: Il faut compter le nombre de vélo par arrondissement et voir où il y en a trop et où il y en a le moins
       } else {
@@ -334,6 +334,6 @@ for (var i = 0; i < 100; i++) {
   rand = {
     latitude: latitude,
     longitude: longitude,
-    address: adress
+    district: adress
   };
   */
