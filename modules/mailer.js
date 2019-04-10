@@ -13,7 +13,7 @@ mailer.sendRegisterConfirmationLink = async function (email, hash) {
         from: 'dspproject18@gmail.com',
         to: email,
         subject: 'Account confirmation',
-        text: "http://localhost:3000/api/confirmUser?hash=" + hash
+        text: `<a href='http://localhost:3000/confirm?hash=${hash}>Confirm</a>`
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
