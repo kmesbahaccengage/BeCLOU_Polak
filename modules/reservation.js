@@ -1,5 +1,5 @@
 let DB = require('./db');
-let Bike = require('/.bike');
+let Bike = require('./bike');
 //let User = require('./user');
 //let Bike = require('./bike');
 const STATUS_BOOKED = 1;
@@ -7,7 +7,6 @@ const STATUS_USED = 2;
 const STATUS_FINISHED = 3;
 
 class Reservation {
-    bike;
     constructor() {
         this.bike = new Bike();
     }
@@ -28,7 +27,8 @@ class Reservation {
     }
 
     async cancelReservation(id){
-        let status = await this.getStatus(id)[0].status;
+        let status = await this.getStatus(id);
+        status = status[0].status;
         let bikeId = await this.getBike(id);
         if (status !== 1){
             return false

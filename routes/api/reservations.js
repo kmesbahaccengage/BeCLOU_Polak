@@ -33,7 +33,7 @@ module.exports =
                     error = "Couldn't create a reservation";
                     break;
                 case 'update':
-                    result = await reserv.updateStatus(id, status, bikeId);
+                    result = await reserv.updateStatus(id, status);
                     message = "Reservation " + id + " updated";
                     error = "Couldn't update the reservation " + id;
                     break;
