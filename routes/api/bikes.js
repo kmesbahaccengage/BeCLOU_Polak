@@ -11,19 +11,19 @@ module.exports = {
         switch (req.params.param) {
             case 'create':
                 result = await bike.createBike(district, longitude, latitude);
-                message = "Bike Created !";
-                error = "Couldn't create a bike !";
+                message = "createBike() succesfull !";
+                error = "createBike() failed !";
                 break;
             case 'updatestatus':
                 result = await bike.updateBikeStatus(id, status);
-                message = "Status Bike Updated !";
-                error = "Failed update bike status";
+                message = "updateBikeStatus() successfull !";
+                error = "updateBikeStatus() failed !";
 
                 break;
             case 'updatelocalisation':
                 result = await bike.updateBikeLocalisation(id, district, longitude, latitude);
-                message = "Localisation Bike Updated !";
-                error = "Failed update bike localisation !";  
+                message = "updateBikeLocalisation() succesfull !";
+                error = "updateBikeLocalisation() failed !";  
                 break;
             default:
                 result = {};
@@ -37,16 +37,20 @@ module.exports = {
     get: async function (req, res) {
         let bike = new Bikes();
         let result;
+        let error;
 
         switch (req.params.param) {
             case 'all':
                 result = await bike.getAllBikes();
+                error = "getAllBikes() failed !"
                 break;
             case 'district':
                 result = await bike.getBikeByDistrict(req.query.district);
+                error= "getBikeByDistrict() failed !";
                 break;
             case 'status':
                 result = await bike.getBikeStatus(req.query.id);
+                error = "getBikeStatus() failed !";
                 break;
             default:
                 result = {};
@@ -55,6 +59,6 @@ module.exports = {
         if (result) {
             res.set("Content-Type", "application/json");
             res.send(JSON.stringify(result));
-        } else res.status(401).send('Error');
+        } else res.status(400).send(error);
     },
 };
