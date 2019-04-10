@@ -20,17 +20,31 @@ j'te laisse regarder
 module.exports =
     {
         post: async function (req, res) {
-            let {userId, bikeId, beginAt, duration} = req.body;
-            let reservation = new Reservations();
-            let response = await reservation.createReservation(userId, bikeId, beginAt, duration);
-            if (response) {
+            let {id, userId, bikeId, beginAt, duration, status} = req.body;
+            let reserv = new Reservations();
+            let result;
+
+            console.log(req.params.param);
+            switch (req.params.param){
+                case 'create':
+                    result = await reserv.createReservation(userId, bikeId, beginAt, duration);
+                    break;
+                case 'update':
+                    result = await reserv.updateStatus(id, status);
+                    break;
+                default:
+                    result = {};
+                    break;
+            }
+            if (result) {
                 res.set('Content-Type', 'application/json');
                 res.send(
                     {
-                        msg: "Reservation created"
+                        msg: req.params.param === 'create' ? "Reservation created"
+                            : "Reservation updated"
                     }
                 );
-            } else res.status(400).send("Couldn't create a reservation");
+            } else res.status(400).send("Couldn't POST a reservation");
         },
         get: async function (req, res) {
             let reserv = new Reservations();
@@ -68,8 +82,5 @@ module.exports =
                 res.set('Content-Type', 'application/json');
                 res.send(JSON.stringify(result));
             } else res.status(400).send("Couldn't get");
-        },
-        put: async function () {
-
         }
     };

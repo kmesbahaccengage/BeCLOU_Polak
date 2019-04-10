@@ -56,8 +56,7 @@ app.route('/api/reservations/:param')
     .get(reservations.get, function (req, res) {
         res.send(req.body);
     })
-    .post(reservations.post)
-    .put(reservations.put);
+    .post(reservations.post);
 
 let bikes = require('./routes/api/bikes');
 app.route('/api/bikes/:param')

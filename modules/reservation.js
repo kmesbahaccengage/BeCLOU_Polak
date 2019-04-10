@@ -24,8 +24,8 @@ class Reservation {
         let query = `update reservations set status = ${status} where id = ${id}`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
-                err || !result.length ? resolve(false)
-                    : resolve(result);
+                if(err) resolve(false);
+                resolve(result);
             });
         });
         return reservation;
