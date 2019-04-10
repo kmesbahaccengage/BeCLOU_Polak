@@ -2,7 +2,7 @@ let Bikes = require('../../modules/bike');
 
 module.exports = {
     post: async function (req, res) {
-        let {id, district, longitude, latitude} = req.body;
+        let {id, district, longitude, latitude, status} = req.body;
         let bike = new Bikes();
         let result;
         let message;
@@ -15,7 +15,7 @@ module.exports = {
                 error = "Couldn't create a bike !";
                 break;
             case 'updatestatus':
-                result = await bike.updateBikeStatus(id);
+                result = await bike.updateBikeStatus(id, status);
                 message = "Status Bike Updated !";
                 error = "Failed update bike status";
 
@@ -45,8 +45,8 @@ module.exports = {
             case 'district':
                 result = await bike.getBikeByDistrict(req.query.district);
                 break;
-            case 'isfunctionnal':
-                result = await bike.getIsFunctionnal(req.query.id);
+            case 'status':
+                result = await bike.getBikeStatus(req.query.id);
                 break;
             default:
                 result = {};

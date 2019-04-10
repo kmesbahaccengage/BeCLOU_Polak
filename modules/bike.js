@@ -5,8 +5,8 @@ class Bike {
     constructor() {}
     
     // GET
-    async getIsFunctionnal(id) {
-        let query = `SELECT is_functionnal FROM bikes WHERE id = ${id}`;
+    async getBikeStatus(id) {
+        let query = `SELECT status FROM bikes WHERE id = ${id}`;
         let bikeStatus = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
@@ -43,8 +43,8 @@ class Bike {
     // POST
     async createBike(district = null, longitude = null, latitude = null) {
         let query = !district && !longitude && !latitude ?
-            `INSERT INTO bikes (is_functionnal) VALUES (1)`
-            : `INSERT INTO bikes (is_functionnal, district, longitude, latitude) VALUES (1, ${district}, ${longitude}, ${latitude})`;
+            `INSERT INTO bikes (status) VALUES (1)`
+            : `INSERT INTO bikes (status, district, longitude, latitude) VALUES (1, ${district}, ${longitude}, ${latitude})`;
         let bike = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err ? resolve(false)
@@ -55,11 +55,8 @@ class Bike {
     }
 
     // PUTT
-    async updateBikeStatus(id) {
-        let bikeStatus = await this.getIsFunctionnal(id);
-        let query = bikeStatus == 0 ?
-            `UPDATE bikes SET is_functionnal = 1`
-            : `UPDATE bikes SET is_functionnal = 0`;
+    async updateBikeStatus(id, status) {
+        let query =`UPDATE bikes SET status = ${status}`;
         let bike = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err ? resolve(false)
@@ -71,7 +68,7 @@ class Bike {
 
     // PUTT
     async updateBikeLocalisation(id, district, longitude, latitude) {
-        if (await this.getIsFunctionnal(id) == 0) {
+        if (await this.getBikeStatus(id) == 0) {
             return false;
         }
         let query = `UPDATE bikes SET district = ${district}, longitude = ${longitude}, latitude = ${latitude} WHERE id = ${id}`;
