@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set les routes public views
 // Pour ajouter un chemin vers un .html, copier coller la fonction ci-dessous et changer le nom du ficher
 app.get('/', function (req, res) {
-    console.log(req.params);
     res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
