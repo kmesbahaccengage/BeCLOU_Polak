@@ -1,62 +1,62 @@
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BeClou</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/stylelogin.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BeClou</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylelogin.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
-  <header>
+<header>
     <div class="logo">
-      <img src="images/logo.png" alt="">
+        <img src="images/logo.png" alt="">
     </div>
-  </header>
-  <section>
+</header>
+<section>
     <div class="title explain">
-      <h1>Log In</h1>
-      <p>We will send you an email to confirm your registration.</p>
+        <h1>Log In</h1>
+        <p>We will send you an email to confirm your registration.</p>
     </div>
     <div class="formulaire">
-      <form class="formul" onsubmit="return login(event)">
-        <input type="Email" name="email" placeholder="Your Email" id="email" maxlength="50" />
-        <input type="password" name="password" placeholder="Your Password" id="password" maxlength="50">
-        <input type="submit" name="submit" id="submit" value="Connexion">
-      </form>
+        <form class="formul" onsubmit="return login(event)">
+            <input type="Email" name="email" placeholder="Your Email" id="email" maxlength="50"/>
+            <input type="password" name="password" placeholder="Your Password" id="password" maxlength="50">
+            <input type="submit" name="submit" id="submit" value="Connexion">
+        </form>
     </div>
     <div class="link-already">
-      <a href="/signin">I don't have an account</a>
+        <a href="/signin">I don't have an account</a>
     </div>
-  </section>
-  <script>
-    async function login(e){
-      e.preventDefault();
-            // on met les infos du formulaire dans un objet
-            let data = {
-              email: document.getElementById('email').value || '',
-              password: document.getElementById('password').value || ''
-            };
-            // on set l'url de l'api register
-            let url = '/api/users/login';
-            // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
-             // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
-             let res = await fetch(url, {
-              method: 'POST',
-              body: JSON.stringify(data),
-              headers: {
+</section>
+<script>
+    async function login(e) {
+        e.preventDefault();
+        // on met les infos du formulaire dans un objet
+        let data = {
+            email: document.getElementById('email').value || '',
+            password: document.getElementById('password').value || ''
+        };
+        // on set l'url de l'api register
+        let url = '/api/users/login';
+        // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
+        // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
+        let res = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
                 'Content-Type': 'application/json'
-              }
-            });
-            // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
-             // du coup si y a eu un 200, on peut continuer notre script
-             // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
-            if (res.status === 200) {
-              window.location.href = "/";    
-            } else alert(res.status + " " + await res.text());
-            return false;
-  };
+            }
+        });
+        // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
+        // du coup si y a eu un 200, on peut continuer notre script
+        // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
+        if (res.status === 200) {
+            window.location.href = "/";
+        } else alert(res.status + " " + await res.text());
+        return false;
+    };
 </script>
 </body>
 </html>
