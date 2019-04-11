@@ -24,7 +24,7 @@ module.exports = {
 			//return true or false
 			result = await user.validateUser(hash);
 			if(result){
-				res.redirect("/login");
+				res.status(301).redirect("/login");
 			}else res.status(401).send("Error user non validated");
 			break;
 		case 'login':

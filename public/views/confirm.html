@@ -24,11 +24,8 @@
              // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
              console.log(res.status);
             if (res.status === 200) {
-                let response = await res.json();
-                alert("User confirmed ");
-                res.sendFile(path.join(__dirname + '/public/views/login.html'));
+            	window.location.href = "/login";
             } else alert(res.status + " " + await res.text());
-            return false;
     }
     function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
