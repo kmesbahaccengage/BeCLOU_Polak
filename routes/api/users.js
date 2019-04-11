@@ -18,6 +18,10 @@ module.exports = {
 				console.log("send " + email);
 				msg = result;
 			}
+			if (result) {
+				res.set("Content-Type", "application/json");
+				res.send({ msg: msg});
+			} else res.status(401).send(error);
 			break;
 		case 'confirm':
 			//return true or false
@@ -38,10 +42,6 @@ module.exports = {
 			result = {};
 			break;
 		}
-		if (result) {
-			res.set("Content-Type", "application/json");
-			res.send({ msg: msg});
-		} else res.status(401).send(error);
 	},
 	get: async function (req, res) {
 	let user = new User();
