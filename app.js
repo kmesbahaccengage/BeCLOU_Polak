@@ -4,36 +4,36 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let session = require('express-session');
-
 let app = express();
-
-
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(session({ secret: 'beclou'}));
-app.use(session({ uid: 1}));
+app.use(session({secret: 'beclou'}));
+app.use(session({uid: 1}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set les routes public views
 // Pour ajouter un chemin vers un .html, copier coller la fonction ci-dessous et changer le nom du ficher
 app.get('/', function (req, res) {
-    if(!req.session.uid) {
+    if (!req.session.uid) {
         res.redirect('/login');
-        // res.sendFile(path.join(__dirname + '/public/views/login.html'));
-    }
-    else
+    } else
         res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
 app.get('/signin', function (req, res) {
+    if (req.session.uid) {
+        res.redirect('/');
+    }
     res.sendFile(path.join(__dirname + '/public/views/signin.html'));
 });
 
 app.get('/login', function (req, res) {
-
+    if (req.session.uid) {
+        res.redirect('/');
+    }
     res.sendFile(path.join(__dirname + '/public/views/login.html'));
 });
 
