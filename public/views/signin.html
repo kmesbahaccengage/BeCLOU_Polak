@@ -47,7 +47,7 @@
                 password: document.getElementById('password').value || ''
             };
             // on set l'url de l'api register
-            let url = '/api/register';
+            let url = '/api/users/register';
             // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
              // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
             let res = await fetch(url, {

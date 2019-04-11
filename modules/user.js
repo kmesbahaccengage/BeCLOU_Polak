@@ -90,8 +90,6 @@ class User {
         let response = await new Promise(async resolve => {
             let sql = `INSERT INTO users (email, firstname, lastname) VALUES ('${email}', '${firstname}', '${lastname}')`;
             DB.connection.query(sql, function (err, result) {
-                console.log("Result : ");
-                console.log(result);
                 resolve(result);
             });
         });
@@ -105,8 +103,6 @@ class User {
                 });
             });
         }
-        console.log("retour du response")
-        console.log(response)
         return response ? await this.getUserInfo(email) : null;
     };
 }
