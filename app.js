@@ -49,6 +49,14 @@ app.get('/confirm', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/views/confirm.html'));
 });
 
+app.get('/unlock', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/unlock.html'));
+});
+
+app.get('/qr', function(req, res){
+    res.sendFile(path.join(__dirname + '/public/views/qrcode.html'));
+});
+
 // Set les routes pour les API GET
 let users = require('./routes/api/users');
 app.route('/api/users/:param')
