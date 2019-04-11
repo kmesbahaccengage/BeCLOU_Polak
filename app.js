@@ -71,11 +71,6 @@ app.route('/api/bikes/:param')
     })
     .post(bikes.post);
 
-app.put('/api/confirmUser/:user_id', require('./routes/api/confirmUser'));
-
-// Set les routes pour les API POST
-app.post('/api/register', require('./routes/api/register'));
-app.post('/api/login', require('./routes/api/login'));
 module.exports = app;
 
 /*app.use(function (req, res, next) {

@@ -3,7 +3,7 @@ let sha256 = require('sha256');
 let mailer = require('../../modules/mailer');
 
 module.exports = {
-post: async function (req, res) {
+	post: async function (req, res) {
 	let user = new User();
 	let result;
 	let msg;
@@ -22,7 +22,10 @@ post: async function (req, res) {
 		case 'confirm':
 			//return true or false
 			result = await user.validateUser(hash);
-			msg = "User validated";
+			if(result){
+				msg = "User validated";
+				res.redirect("/login");
+			}
 			error = "Error user non validated";
 			break;
 		case 'login':
@@ -40,7 +43,7 @@ post: async function (req, res) {
 			res.send({ msg: msg});
 		} else res.status(401).send(error);
 	},
-get: async function (req, res) {
+	get: async function (req, res) {
 	let user = new User();
 	let result;
 	switch (req.params.param) {
