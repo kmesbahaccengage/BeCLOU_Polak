@@ -31,8 +31,12 @@ module.exports = {
 			//return les infos de l'user : session ?
 			result = await user.login(email, password);
 			if(result){
+				req.session.uid = 5;
+
 				res.set("Content-Type", "application/json");
 				res.send({ msg: "User logged"});
+				console.log(result);
+				// res.session.uid = result.id;
 			}else res.status(400).send("Error login");
 			break;
 		default:
