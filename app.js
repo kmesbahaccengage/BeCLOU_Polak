@@ -57,6 +57,10 @@ app.get('/qr', function(req, res){
     res.sendFile(path.join(__dirname + '/public/views/qrcode.html'));
 });
 
+app.get('/map', function(req, res){
+    res.sendFile(path.join(__dirname + '/public/views/map.html'));
+});
+
 // Set les routes pour les API GET
 let users = require('./routes/api/users');
 app.route('/api/users/:param')

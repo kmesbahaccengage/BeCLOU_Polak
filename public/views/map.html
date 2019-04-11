@@ -327,7 +327,7 @@
             // Add info window to marker
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
-                    infoWindow.setContent(infoWindowContent[i][0]);
+                    infoWindow.setContent(getInfoWindow(bikes[i].id));
                     infoWindow.open(map, marker);
                 }
             })(marker, i));
@@ -359,6 +359,13 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAwxMsnJPAeam7mp7wfx-PnOhLkiLxK6s&callback=initMap">
 </script>
 <script>
+    function getInfoWindow(id) {
+        return '<div class="info_content">' +
+            '<input type="number" min="1" max="24" name="duree" placeholder="Duration" id="duration"/>' + '</div>' +
+            '<input type="datetime-local" name="datetime" placeholder="Date" id="date"/>' +
+            '<button onclick="bookBike(' + id + ')" type="button" name="button" >Book</button>';
+    }
+
     async function getuserIdBySession() {
         let url = '/api/users/session';
         let userId;
@@ -378,6 +385,8 @@
         url = '/api/reservations/create';
         let date = document.getElementById('date').value;
         let duration = document.getElementById('duration').value;
+        console.log(bikeId, userId, duration);
+
         let data = {
             bikeId: bikeId,
             userId: userId,
@@ -400,7 +409,7 @@
 
     async function getAllBikes() {
         console.log('bikes');
-        let url = '/api/bikes/all';
+        let url = '/api/bikes/all?status=1';
         let res = await fetch(url,
             {
                 method: 'GET'
