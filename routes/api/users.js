@@ -42,11 +42,13 @@ post: async function (req, res) {
 		} else res.status(401).send(error);
 	},
 get: async function (req, res) {
+	let user = new User();
+	let result;
 	switch (req.params.param) {
 		case 'all':
-		if (!req.query.id)
-				result = await reserv.getAllReservations();
-			else result = await reserv.getReservationsByUserId(req.query.user_id);
+		if (!req.query.user_id)
+				result = await user.getUsers();
+			else result = await user.getUserById(req.query.user_id);
 			break;
 		}
 		if (result) {

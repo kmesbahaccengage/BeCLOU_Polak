@@ -26,6 +26,17 @@ class User {
         return user;
     };
 
+    async getUserById(id) {
+        console.log("Get User Info : " + id);
+        let user = await new Promise(async resolve => {
+            DB.connection.query(`SELECT * FROM users where id = '${id}'`, function (err, result) {
+                if (err) throw err;
+                resolve(result[0]);
+            });
+        });
+        return user;
+    };
+
     async login(email, passwordInput) {
         console.log("Login:" + email);
         let userId = await this.getUserId(email);
