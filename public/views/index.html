@@ -15,12 +15,30 @@
 		</div>
 		<div class="navbar">
 			<ul>
-				<li><a class="active" href="#home">Home</a></li>
+				<li><a class="active" onclick="return logout()">Logout</a></li>
 				<li><a href="#news">News</a></li>
 				<li><a href="#contact">Contact</a></li>
 				<li><a href="#about">About</a></li>
 			</ul>
 		</div>
 	</header>
+	<script type="text/javascript">
+		async function logout(){
+			console.log("logout");
+            let url = '/api/users/logout';
+            // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
+             // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
+             let res = await fetch(url, {
+              method: 'POST'
+            });
+            // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
+             // du coup si y a eu un 200, on peut continuer notre script
+             // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
+            if (res.status === 200) {
+              window.location.href = "/login";    
+            } else alert(res.status + " " + await res.text());
+            return false;
+		}
+	</script>
 </body>
 </html>

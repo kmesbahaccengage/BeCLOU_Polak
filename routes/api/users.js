@@ -40,6 +40,15 @@ module.exports = {
 				// res.session.uid = result.id;
 			}else res.status(400).send("Error login");
 			break;
+		case 'logout':
+			console.log("logout : " + req.session.uid);
+			try{
+				req.session.destroy();
+				res.set("Content-Type", "application/json");
+				res.send({ msg: "User logged out"});
+			}catch(err){
+				res.status(400).send("Error destroyed session");
+			}
 		default:
 			result = {};
 			break;
