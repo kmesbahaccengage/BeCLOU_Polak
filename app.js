@@ -19,16 +19,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
     if (!req.session.uid) {
         res.redirect('/login');
-        // res.sendFile(path.join(__dirname + '/public/views/login.html'));
     } else
         res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
 app.get('/signin', function (req, res) {
+    if (req.session.uid) {
+        res.redirect('/');
+    }
     res.sendFile(path.join(__dirname + '/public/views/signin.html'));
 });
 
 app.get('/login', function (req, res) {
+    if (req.session.uid) {
+        res.redirect('/');
+    }
     res.sendFile(path.join(__dirname + '/public/views/login.html'));
 });
 
