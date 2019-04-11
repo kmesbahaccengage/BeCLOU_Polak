@@ -16,27 +16,24 @@ module.exports = {
 			if (result) {
 				await mailer.sendRegisterConfirmationLink(email, newHash);
 				console.log("send " + email);
-				msg = result;
-			}
-			if (result) {
 				res.set("Content-Type", "application/json");
-				res.send({ msg: msg});
-			} else res.status(401).send(error);
+				res.send({ msg: result});
+			}else res.status(401).send(error);
 			break;
 		case 'confirm':
 			//return true or false
 			result = await user.validateUser(hash);
 			if(result){
-				msg = "User validated";
 				res.redirect("/login");
-			}
-			error = "Error user non validated";
+			}else res.status(401).send("Error user non validated");
 			break;
 		case 'login':
 			//return les infos de l'user : session ?
 			result = await user.login(email, password);
-			msg = "User logged";
-			error = "Error, user not logged";
+			if(result){
+				res.set("Content-Type", "application/json");
+				res.send({ msg: "User logged"});
+			}else res.status(400).send("Error login");
 			break;
 		default:
 			result = {};
