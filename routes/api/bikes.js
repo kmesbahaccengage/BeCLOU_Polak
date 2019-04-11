@@ -42,7 +42,7 @@ module.exports = {
         switch (req.params.param) {
             case 'all':
                 if (req.query.status){
-                    result = await bike.getAllBikeByStatus();
+                    result = await bike.getAllBikeByStatus(req.query.status);
                     error = "getAllBikeByStatus() failed !";
                 } else {
                     result = await bike.getAllBikes();
