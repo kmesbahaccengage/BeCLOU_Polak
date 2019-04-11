@@ -42,7 +42,7 @@ module.exports = {
         switch (req.params.param) {
             case 'all':
                 result = await bike.getAllBikes();
-                error = "getAllBikes() failed !"
+                error = "getAllBikes() failed !";
                 break;
             case 'district':
                 result = await bike.getBikeByDistrict(req.query.district);

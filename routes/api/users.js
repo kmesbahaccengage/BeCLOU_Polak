@@ -35,7 +35,6 @@ post: async function (req, res) {
 			result = {};
 			break;
 		}
-		console.log(result);
 		if (result) {
 			res.set("Content-Type", "application/json");
 			res.send({ msg: msg});
