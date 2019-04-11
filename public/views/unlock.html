@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unlock</title>
+    
+</head>
+<body>
+</body>
+<script>
+	unlock();
+	async function unlock(){
+            // on set l'url de l'api register
+            let url = '/api/bikes/updatestatus';
+            // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
+             // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
+            let res = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    id:getUrlParameter('id'),
+                    status:2
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
+             // du coup si y a eu un 200, on peut continuer notre script
+             // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
+            if (res.status === 200) {
+            	window.location.href = "/";
+            } else alert(res.status + " " + await res.text());
+    }
+    function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+</script>
+</html>
