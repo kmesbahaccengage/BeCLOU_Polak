@@ -1,0 +1,405 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BeClou</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylebooking.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../stylesheets/burger.css">
+    <link rel="stylesheet" href="../stylesheets/grid.css">
+    <link rel="stylesheet" href="../stylesheets/fonts.css">
+    <link rel="stylesheet" href="../stylesheets/carousel.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+              height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+            }
+          </style>  
+  </head>
+  <body>
+      <div class="pure-g">
+          <div class="pure-u-1-3">
+                  <nav role="navigation">
+                          <div id="menuToggle">
+                                  <input type="checkbox" />
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                                  <ul id="menu">
+                                    <p class="welcome_text">Hi!</p>
+                                    <a href="../views/booking.html"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                    <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>                                          <a href="../views/qrcode.html" ><li id="menu_content"><img id="icon_menu" src="../images/qr-code.png">Scan a QR Code</li></a>
+
+                                    <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                    <a href="https://erikterwan.com/" target="_blank"><li id="menu_content">Sign Out</li></a>
+                                  </ul>
+                                </div>
+          </div>
+          <a class="pure-u-1-3"  href="index.html"><div id="logoContainer"><p></p></div></a>
+
+          <div class="pure-u-1-3">
+          </div>
+      </div>
+      <div id="map">
+          <button>Start Now</button>
+      </div>
+      <div>
+      <button id="confirm_run" class="target_map">Start Now</button>
+    </div>
+      <script>
+
+            // On initialise la map ici :
+              // On definit le zoom afin de voir tout Paris
+              // Les coordonnées de où sera centrée la maps
+              // On peut choisir la texture de map
+              function initMap() {
+      
+                    // Create a new StyledMapType object, passing it an array of styles,
+                    // and the name to be displayed on the map type control.
+                    var styledMapType = new google.maps.StyledMapType(
+                      [
+                {
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#f5f5f5"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.icon",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#616161"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.stroke",
+                  "stylers": [
+                    {
+                      "color": "#f5f5f5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#bdbdbd"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#eeeeee"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#757575"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.business",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e5e5e5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.arterial",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#757575"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#dadada"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#616161"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.line",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e5e5e5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.station",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#eeeeee"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#c9c9c9"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                }
+                ],
+              {name: 'Styled Map'});
+      
+          // Create a map object, and include the MapTypeId to add
+          // to the map type control.
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: {lat: 48.857010, lng: 2.343724},
+            mapTypeControlOptions: {
+              mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                      'styled_map']
+            }
+          });
+      
+          //Associate the styled map with the MapTypeId and set it to display.
+          map.mapTypes.set('styled_map', styledMapType);
+          map.setMapTypeId('styled_map');
+      
+      
+              // On definit les coordonnées des angles de notre polygone ici
+          /*    var premierCoords = [
+                {lat: 48.868117, lng: 2.324658},
+                {lat: 48.856632, lng: 2.325086},
+                {lat: 48.855060, lng: 2.337114},
+                {lat: 48.866966, lng: 2.336836}
+              ];
+      */
+              // On crée le polygon ici, à l'aide des angles definit précédement
+                // On peut choisir une couleur de fond, une opacité de fond
+                // La couleur du coutour, l'épaisseur, l'opacité
+          /*    var premArr = new google.maps.Polygon({
+                paths: premierCoords,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.5,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.3
+              });*/
+      
+              // Une fois le polygone initialisé et créé, on le fout sur la map
+            //  premArr.setMap(map);
+      
+      
+      
+      
+              // Partie pour la geolocation
+              infoWindow = new google.maps.InfoWindow;
+              // Try HTML5 geolocation.
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                  var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                  };
+      
+                  infoWindow.setPosition(pos);
+                  infoWindow.setContent('You are here');
+                  infoWindow.open(map);
+                //  map.setCenter(pos);
+                }, function() {
+                  handleLocationError(true, infoWindow, map.getCenter());
+                });
+              } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+              }
+      
+              //Pour les markers
+              setMarkers(map);
+      }
+      
+            // Pour la geolocation
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+              infoWindow.setPosition(pos);
+              infoWindow.setContent(browserHasGeolocation ?
+                                    'Error: The Geolocation service failed.' :
+                                    'Error: Your browser doesn\'t support geolocation.');
+              infoWindow.open(map);
+            }
+      
+            //Positions des differents markers
+            var marqueurs = [
+              ['Louvre', 48.860433, 2.337991, 4],
+              ['Notre Dame', 48.852737, 2.350540, 5],
+              ['Rex', 48.870319, 2.347929, 3]
+            ];
+      
+            // Definition des markers
+            function setMarkers(map) {
+              // Adds markers to the map.
+      
+              // Marker sizes are expressed as a Size of X,Y where the origin of the image
+              // (0,0) is located in the top left of the image.
+      
+              // Origins, anchor positions and coordinates of the marker increase in the X
+              // direction to the right and in the Y direction down.
+              var image = {
+                url: '../images/minivelo.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(32, 35),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(0, 32)
+              };
+              // Shapes define the clickable region of the icon. The type defines an HTML
+              // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+              // The final coordinate closes the poly by connecting to the first coordinate.
+              var shape = {
+                coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                type: 'poly'
+              };
+              for (var i = 0; i < marqueurs.length; i++) {
+                var marque = marqueurs[i];
+                var marker = new google.maps.Marker({
+                  position: {lat: marque[1], lng: marque[2]},
+                  map: map,
+                  icon: image,
+                  shape: shape,
+                  title: marque[0],
+                  zIndex: marque[3]
+                });
+              }
+            }
+          </script>
+      
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAwxMsnJPAeam7mp7wfx-PnOhLkiLxK6s&callback=initMap">
+          </script>
+  </body>
+</html>

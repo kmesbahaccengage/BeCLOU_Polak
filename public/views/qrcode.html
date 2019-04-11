@@ -11,9 +11,33 @@
     <link rel="stylesheet" href="../stylesheets/burger.css">
     <link rel="stylesheet" href="../stylesheets/grid.css">
     <link rel="stylesheet" href="../stylesheets/fonts.css">
+    <link rel="stylesheet" href="../stylesheets/qrcode.css">
+
     <link rel="stylesheet" href="../stylesheets/carousel.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <head>
+            <title>Instascan &ndash; Demo</title>
+            <link rel="stylesheet" href="styleqr.css">
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+            <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+          </head>
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+              height: 100%;
+              width: 100%;
+              position: relative;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+            }
+          </style>  
   </head>
   <body>
       <div class="pure-g">
@@ -39,22 +63,25 @@
           <div class="pure-u-1-3">
           </div>
       </div>
-    <section id="booking_container" class="content_app">
-      
-      <div class="title explain">
-        <h1 id="title_size">Want to finish a ride ?</h1>
-        <p>Please, leave your bike in a suitable place</p>
-      </div>
-      <div class="picture">
-        <img src="../images/group-41-copy-3.svg" alt="">
-      </div>
-    <div class="bouttons-paiement">
-        <!-- <button type="button" name="paiement">€1 - 1 hours</button>
-        <button type="button" name="cancel">€11 - 12 hours</button>
-        <button type="button" name="cancel">€20 - 24 hours</button>-->
-        <a href='#target1' id='target1' class='target'>End the ride, and pay  €2.60</a>
-        <a href='#target2' id='target2' class='target'>No, I want to continue my ride</a>
-      </div> 
-    </section>
+      <div id="map">
+            <video id="preview"></video>
+        </div>
+            <script type="text/javascript">
+              let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+              scanner.addListener('scan', function (content) {
+                console.log(content);
+              });
+              Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                  scanner.start(cameras[0]);
+                } else {
+                  console.error('No cameras found.');
+                }
+              }).catch(function (e) {
+                console.error(e);
+              });
+            </script>
+      <button id="confirm_run" class="target_map">Start Now</button>
+    </div>
   </body>
 </html>

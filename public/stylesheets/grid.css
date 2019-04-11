@@ -1,0 +1,118 @@
+.pure-u-1-3 {
+    height: 65px;
+}
+
+#logoContainer {
+    background: url(../images/group-19.svg) no-repeat center center;
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+
+#select_bike {
+    height: 100px;
+    width: 100%;
+    background-color: #2fba24;
+    padding: 0 !important;
+    color: #FFF;
+    font-size: 14px !important;
+    font-family: 'Poppins', sans-serif;
+}
+.start_button {
+width: 172px;
+height: 45px;
+background-color: #FFF;
+font-family: 'Poppins', sans-serif;
+border: solid 1px #222;
+color: #222
+}
+
+#start {
+    height: 140px;
+    width: 100%;
+    position: relative;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#log_section {
+    margin-top: 120px;
+}
+
+.content_app {
+    margin-top: 50px;
+}
+
+#desktop_landing {
+    display: flex;
+    width: 100%;
+    position: relative;
+    height: 300px;
+    text-align: center;
+    background-color: #eff1f5;
+}
+
+.title_desktop {
+
+    font-family: 'Poppins';
+    font-size: 64px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #2fba24;
+    text-decoration: underline;
+    margin-bottom: 0;
+}
+
+.desc_desktop {
+    opacity: 0.75;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+#explain_desktop {
+    display: flex;
+    position: relative;
+    width: 100%;
+    top: 40%;
+    justify-content: space-around;
+}
+
+#explain_desktop img{
+    width: 50%;
+}
+
+.first {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.second {
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#logdesktop {
+    display: flex;
+    font-family: 'Poppins';
+    font-size: 14px;
+    flex-direction: row;
+    align-items: center;    
+    position: relative;
+    justify-content: space-around;
+}
+
+#log_button {
+    position: relative;
+    height: 60%;
+    width: 60%;
+    background-color: #2fba24;
+    color: #FFF;
+}
