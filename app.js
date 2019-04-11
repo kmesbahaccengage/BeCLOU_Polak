@@ -33,6 +33,10 @@ app.get('/reverse', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/views/reverse.html'));
 });
 
+app.get('/confirm', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/confirm.html'));
+});
+
 // Set les routes pour les API GET
 let users = require('./routes/api/users');
 app.route('/api/users/:param')

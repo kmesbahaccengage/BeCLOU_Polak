@@ -12,15 +12,11 @@ post: async function (req, res) {
 	switch (req.params.param) {
 		case 'register':
 			let newHash = sha256("L6Y&JsfJ#KURxuRj" + email + Date.now());
-			let response = await user.register(email, firstname, lastname, password, newHash);
-			if (response) {
+			result = await user.register(email, firstname, lastname, password, newHash);
+			if (result) {
 				await mailer.sendRegisterConfirmationLink(email, newHash);
 				console.log("send " + email);
-				res.set('Content-Type', 'application/json');
-				res.send(response);
-			} else {
-				res.set('Content-Type', 'text/plain');
-				res.status(401).send("User already exists");
+				msg = result;
 			}
 			break;
 		case 'confirm':
@@ -39,10 +35,11 @@ post: async function (req, res) {
 			result = {};
 			break;
 		}
+		console.log(result);
 		if (result) {
 			res.set("Content-Type", "application/json");
 			res.send({ msg: msg});
-		} else res.status(400).send(error);
+		} else res.status(401).send(error);
 	},
 get: async function (req, res) {
 	switch (req.params.param) {

@@ -14,7 +14,7 @@ mailer.sendRegisterConfirmationLink = async function (email, hash) {
         from: 'dspproject18@gmail.com',
         to: email,
         subject: 'Account confirmation',
-        html: `<a href='http://localhost:3000/confirm?hash=${hash}'>Confirm</a>`
+        html: `<a href="http://localhost:3000/confirm?hash=${hash}">Confirm</a>`
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
