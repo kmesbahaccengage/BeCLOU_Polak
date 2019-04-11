@@ -1,16 +1,20 @@
 let User = require('../../modules/user');
+let sha256 = require('sha256');
+let mailer = require('../../modules/mailer');
 
 module.exports = {
 post: async function (req, res) {
 	let user = new User();
 	let result;
-	let {email, firstname, lastname, password} = req.body;
+	let msg;
+	let error;
+	let {email, firstname, lastname, password, hash} = req.body;
 	switch (req.params.param) {
 		case 'register':
-			let hash = sha256("L6Y&JsfJ#KURxuRj" + email + Date.now());
-			let response = await user.register(email, firstname, lastname, password, hash);
+			let newHash = sha256("L6Y&JsfJ#KURxuRj" + email + Date.now());
+			let response = await user.register(email, firstname, lastname, password, newHash);
 			if (response) {
-				await mailer.sendRegisterConfirmationLink(email, hash);
+				await mailer.sendRegisterConfirmationLink(email, newHash);
 				console.log("send " + email);
 				res.set('Content-Type', 'application/json');
 				res.send(response);
@@ -20,9 +24,16 @@ post: async function (req, res) {
 			}
 			break;
 		case 'confirm':
+			//return true or false
 			result = await user.validateUser(hash);
+			msg = "User validated";
+			error = "Error user non validated";
 			break;
 		case 'login':
+			//return les infos de l'user : session ?
+			result = await user.login(email, password);
+			msg = "User logged";
+			error = "Error, user not logged";
 			break;
 		default:
 			result = {};
@@ -30,7 +41,7 @@ post: async function (req, res) {
 		}
 		if (result) {
 			res.set("Content-Type", "application/json");
-			res.send({ msg: message});
+			res.send({ msg: msg});
 		} else res.status(400).send(error);
 	},
 get: async function (req, res) {

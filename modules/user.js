@@ -54,16 +54,15 @@ class User {
     };
 
     async validateUser(hash) {
-        console.log("Validate User:" + hash);
         let response = await new Promise(async resolve => {
-            let sql = `SELECT login FROM login where hash = \'${hash}\'`;
+            let sql = `SELECT users_id FROM login where hash = \'${hash}\'`;
             DB.connection.query(sql, function (err, result, fields) {
-                resolve(result[0].login);
+                if(err) throw err;
+                result.length > 0 ? resolve(result[0].users_id) : resolve(0);
             });
         });
-        console.log(result);
-        if (result) {
-            let sql = `UPDATE login SET activated = 1 where users_id = \'${userId}\'`;
+        if (response) {
+            let sql = `UPDATE login SET activated = 1 where users_id = \'${response}\'`;
             await new Promise(async resolve => {
                 DB.connection.query(sql, function (err, result, fields) {
                     resolve();
@@ -79,6 +78,7 @@ class User {
         let response = await new Promise(async resolve => {
             let sql = `INSERT INTO users (email, firstname, lastname) VALUES ('${email}', '${firstname}', '${lastname}')`;
             DB.connection.query(sql, function (err, result) {
+                console.log(result);
                 resolve(result);
             });
         });
