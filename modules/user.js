@@ -53,15 +53,16 @@ class User {
         });
     };
 
-    async validateUser(userId, hash) {
-        console.log("Validate User:" + userId);
+    async validateUser(hash) {
+        console.log("Validate User:" + hash);
         let response = await new Promise(async resolve => {
-            let sql = `SELECT hash FROM login where users_id = \'${userId}\'`;
+            let sql = `SELECT login FROM login where hash = \'${hash}\'`;
             DB.connection.query(sql, function (err, result, fields) {
-                resolve(result[0].hash);
+                resolve(result[0].login);
             });
         });
-        if (hash === response) {
+        console.log(result);
+        if (result) {
             let sql = `UPDATE login SET activated = 1 where users_id = \'${userId}\'`;
             await new Promise(async resolve => {
                 DB.connection.query(sql, function (err, result, fields) {

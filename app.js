@@ -34,9 +34,12 @@ app.get('/reverse', function (req, res) {
 });
 
 // Set les routes pour les API GET
-app.get('/api/users', require('./routes/api/users'), function (req, res) {
-    res.send(req.body);
-});
+let users = require('./routes/api/users');
+app.route('/api/users/:param')
+    .get(users.get, function (req, res) {
+        res.send(req.body);
+    })
+    .post(users.post);
 
 
 /*
