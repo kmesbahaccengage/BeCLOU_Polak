@@ -3,6 +3,18 @@ let DB = require('./db');
 class Bike {
 
     constructor() {}
+
+    // GET
+    async getAllBikeByStatus(status) {
+        let query = `SELECT * FROM bikes WHERE status = ${status}`;
+        let bike = await new Promise(async resolve => {
+            DB.connection.query(query, function (err, result) {
+                err || !result.length ? resolve(false)
+                    : resolve(result);
+            });
+        });
+        return bike;
+    }
     
     // GET
     async getBikeStatus(id) {
