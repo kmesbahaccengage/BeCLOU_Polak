@@ -27,7 +27,7 @@
       </form>
     </div>
     <div class="link-already">
-      <a href="#">I don't have an account</a>
+      <a href="/signin">I don't have an account</a>
     </div>
   </section>
   <script>
@@ -52,9 +52,8 @@
             // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
              // du coup si y a eu un 200, on peut continuer notre script
              // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
-             if (res.status === 200) {
-              let response = await res.json();
-              alert("User logged ");
+            if (res.status === 200) {
+              window.location.href = "/";    
             } else alert(res.status + " " + await res.text());
             return false;
   };

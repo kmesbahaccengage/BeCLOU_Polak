@@ -24,15 +24,20 @@ module.exports = {
 			//return true or false
 			result = await user.validateUser(hash);
 			if(result){
-				res.redirect("/login");
+				res.set("Content-Type", "application/json");
+				res.send({ msg: "User confirmed"});
 			}else res.status(401).send("Error user non validated");
 			break;
 		case 'login':
 			//return les infos de l'user : session ?
 			result = await user.login(email, password);
 			if(result){
+				req.session.uid = 5;
+
 				res.set("Content-Type", "application/json");
 				res.send({ msg: "User logged"});
+				console.log(result);
+				// res.session.uid = result.id;
 			}else res.status(400).send("Error login");
 			break;
 		default:

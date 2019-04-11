@@ -62,7 +62,7 @@
              // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
             if (res.status === 200) {
                 let response = await res.json();
-                alert("User created: " + response.email);
+                alert("User created: " + response.msg.email);
             } else alert(res.status + " " + await res.text());
             return false;
         }
