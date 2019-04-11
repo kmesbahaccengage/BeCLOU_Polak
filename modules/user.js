@@ -16,7 +16,7 @@ class User {
     };
 
     async getUserInfo(email) {
-        console.log("Get User Info" + email);
+        console.log("Get User Info by email: " + email);
         let user = await new Promise(async resolve => {
             DB.connection.query(`SELECT * FROM users where email = '${email}'`, function (err, result) {
                 if (err) throw err;
@@ -27,7 +27,7 @@ class User {
     };
 
     async getUserById(id) {
-        console.log("Get User Info : " + id);
+        console.log("Get User Info by ID: " + id);
         let user = await new Promise(async resolve => {
             DB.connection.query(`SELECT * FROM users where id = '${id}'`, function (err, result) {
                 if (err) throw err;
@@ -38,10 +38,9 @@ class User {
     };
 
     async login(email, passwordInput) {
-        console.log("Login:" + email);
+        console.log("Login: " + email);
         let userId = await this.getUserId(email);
         if (!userId) return null;
-        console.log(userId);
         let {activated, password} = await new Promise(async resolve => {
             DB.connection.query(`SELECT activated, password FROM login where users_id = \'${userId}'`, function (err, result) {
                 if (err) throw err;
@@ -54,7 +53,7 @@ class User {
     };
 
     async getUserId(email) {
-        console.log("Get User ID:" + email);
+        console.log("Get User ID: " + email);
         return await new Promise(async resolve => {
             let sql = `SELECT id FROM users where email = '${email}'`;
             DB.connection.query(sql, function (err, result) {
@@ -86,7 +85,7 @@ class User {
     };
 
     async register(email, firstname, lastname, password, hash) {
-        console.log("Register:" + email);
+        console.log("Register: " + email);
         let response = await new Promise(async resolve => {
             let sql = `INSERT INTO users (email, firstname, lastname) VALUES ('${email}', '${firstname}', '${lastname}')`;
             DB.connection.query(sql, function (err, result) {
