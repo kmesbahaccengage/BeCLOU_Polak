@@ -453,10 +453,7 @@
     '<button href="bookBike(' + id + ')" type="button" name="button" >Book</button>';
 
     function getInfoWindow(id) {
-        return '<div class="info_content">' +
-            '<input type="number" min="1" max="24" name="duree" placeholder="Duration" id="duration"/>' + '</div>' +
-            '<input type="datetime-local" name="datetime" placeholder="Date" id="date"/>' +
-            '<button onclick="bookBike(' + id + ')" type="button" name="button" >Book</button>';
+        return `<a href="/booking?id=${id}" type="button" name="button" >Book</a>`;
     }
 
     async function getuserIdBySession() {
@@ -470,34 +467,6 @@
             userId = await result.json();
             return userId.id;
         } else return null;
-    }
-
-    async function bookBike(bikeId) {
-        let userId = await getuserIdBySession();
-        let url;
-        url = '/api/reservations/create';
-        let date = document.getElementById('date').value;
-        let duration = document.getElementById('duration').value;
-        console.log(bikeId, userId, duration);
-
-        let data = {
-            bikeId: bikeId,
-            userId: userId,
-            duration: duration,
-            beginAt: "2019-05-05 22:22:22"
-        };
-        result = await fetch(url,
-            {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-        if (result.status === 200) {
-            alert("Reservation faite !");
-        } else alert("Reservation failed")
     }
 
     async function getAllBikes() {
