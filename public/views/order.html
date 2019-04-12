@@ -16,24 +16,58 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
-    <div id="menu_resp" class="pure-g">
-        <div class="pure-u-1-3">
-
-        </div>
-        <div class="pure-u-1-3" id="logoContainer"><p></p></div>
-
-        <div class="pure-u-1-3">
-        </div>
-      </div>
-      <div id="menu_resp2" class="pure-g">
-        <div class="pure-u-1-3">
-
-    </div>
-        <div class="pure-u-1-3" id="logoContainer" onclick="location.href='/';" style="cursor:pointer;"><p></p></div>
-
-        <div class="pure-u-1-3">
-        </div>
-      </div>
+        <div id="menu_resp" class="pure-g">
+                <div class="pure-u-1-3">
+                        <nav role="navigation">
+                                <div id="menuToggle">
+                                        <input type="checkbox" />
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <ul id="menu">
+                                            <p class="welcome_text">Hi!</p>
+                                            <p id="firstname_print"></p>
+                                            <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                            <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                            <a href="/order"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
+            
+                                            <li class="logout_button"><a href="/qr">Scan your bike</a></li>
+                                            <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
+                                          </ul>
+                                      </div>
+                </div>
+                <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+            
+                <div class="pure-u-1-3">
+                </div>
+              </div>
+              <div id="menu_resp2" class="pure-g">   
+                  <div class="pure-u-1-3">
+                      <nav role="navigation">
+                              <div id="menuToggle">
+                                      <input type="checkbox" />
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                      <ul id="menu">
+                                        <p class="welcome_text">Hi!</p>
+                                        <p id="firstname_print"></p>
+                                        <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                        <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                        <a href="/order"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
+            
+                                        <li class="logout_button"><a href="/qr">Scan your bike</a></li>
+                                        <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
+                                      </ul>
+                                    </div>
+              </div>
+              <a class="pure-u-1-3" id="to_index" href="/"> 
+              <div class="pure-u-1-3" id="logoContainer">
+                 </div>
+                </a> 
+                  <div class="pure-u-1-3">
+                  </div>
+                </div>
 <section class="section_history">
     <div class="info_content" id="resa">
         <div class="title explain">
@@ -66,9 +100,9 @@
         return date;
     }
 
-    function getReservationTemplate(date, prix, current){
-        if (current === "yes"){
-            return `<div class="this_current"><p>${date}</p><p>${prix} €</p><button onclick="cancelReservation()">Cancel</button></div>`
+    function getReservationTemplate(date, prix, current, id, status){
+        if (current === "yes" && status === 1){
+            return `<div class="this_current" id="current"><p>${date}</p><p>${prix} €</p><button onclick="cancelReservation(${id})">Cancel</button></div>`
         } else return `<div class="this_past"><p>${date}</p><p>${prix} €</p></div>`
     }
 
@@ -105,6 +139,24 @@
         for (let i = 0; i < previousReservations.length; i++){
             document.getElementById("histo_resa").innerHTML += getReservationTemplate(cleanDate(previousReservations[i].begin_at), previousReservations[i].duration, "no");
         }
+    }
+
+    async function cancelReservation(id){
+        let url = '/api/reservations/cancel';
+        let userId;
+        let result = await fetch(url,
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    id:id,
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        if (result.status === 200) {
+            window.location.href = "/order";
+        } else return null;
     }
 </script>
 </body>
