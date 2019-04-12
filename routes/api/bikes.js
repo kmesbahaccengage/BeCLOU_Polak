@@ -11,19 +11,19 @@ module.exports = {
         switch (req.params.param) {
             case 'create':
                 result = await bike.createBike(district, longitude, latitude);
-                message = "createBike() succesfull !";
-                error = "createBike() failed !";
+                message = "Bike created sucessfully";
+                error = "Bike couldn't be created";
                 break;
             case 'updatestatus':
                 result = await bike.updateBikeStatus(id, status);
-                message = "updateBikeStatus() successfull !";
-                error = "updateBikeStatus() failed !";
+                message = "Updated bike : " + id + "with status :" + status;
+                error = "Couldn't update bike : " + id;
 
                 break;
             case 'updatelocalisation':
                 result = await bike.updateBikeLocalisation(id, district, longitude, latitude);
-                message = "updateBikeLocalisation() succesfull !";
-                error = "updateBikeLocalisation() failed !";  
+                message = "Updated localisation of bike with id : " + id;
+                error = "Couldn't update localisation of bike with id : " + id;  
                 break;
             default:
                 result = {};
@@ -43,19 +43,19 @@ module.exports = {
             case 'all':
                 if (req.query.status){
                     result = await bike.getAllBikeByStatus(req.query.status);
-                    error = "getAllBikeByStatus() failed !";
+                    error = "Couldn't get all bikes with status : " + req.query.status;
                 } else {
                     result = await bike.getAllBikes();
-                    error = "getAllBikes() failed !";
+                    error = "Couldn't get all bikes";
                 }
                 break;
             case 'district':
                 result = await bike.getBikeByDistrict(req.query.district);
-                error = "getBikeByDistrict() failed !";
+                error = "Couldn't get bikes in district : " + req.query.district;
                 break;
             case 'status':
                 result = await bike.getBikeStatus(req.query.id);
-                error = "getBikeStatus() failed !";
+                error = "Couldn't get status of bike with id : " + req.query.id;
                 break;
             default:
                 result = {};
