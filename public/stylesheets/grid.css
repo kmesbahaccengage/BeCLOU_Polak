@@ -9,7 +9,18 @@
     position: relative;
 }
 
-#firstname {
+.logout_button {
+    border: none;
+    background-color: #2fba24;
+    opacity: 1;
+    /* padding: 10px 0; */
+    padding: 50%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+#firstname_print {
     font-family: 'Poppins';
     font-size: 20px;
     font-weight: 700;
