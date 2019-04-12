@@ -66,9 +66,9 @@
         return date;
     }
 
-    function getReservationTemplate(date, prix, current){
-        if (current === "yes"){
-            return `<div class="this_current"><p>${date}</p><p>${prix} €</p><button onclick="cancelReservation()">Cancel</button></div>`
+    function getReservationTemplate(date, prix, current, id, status){
+        if (current === "yes" && status === 1){
+            return `<div class="this_current" id="current"><p>${date}</p><p>${prix} €</p><button onclick="cancelReservation(${id})">Cancel</button></div>`
         } else return `<div class="this_past"><p>${date}</p><p>${prix} €</p></div>`
     }
 
@@ -99,10 +99,28 @@
                 currentReservation = reservations[i];
             } else previousReservations.push(reservations[i]);
         }
-        document.getElementById("current_resa").innerHTML = getReservationTemplate(cleanDate(currentReservation.begin_at), currentReservation.duration, "yes");
+        document.getElementById("current_resa").innerHTML = getReservationTemplate(cleanDate(currentReservation.begin_at), currentReservation.duration, "yes", currentReservation.id, currentReservation.status);
         for (let i = 0; i < previousReservations.length; i++){
             document.getElementById("histo_resa").innerHTML += getReservationTemplate(cleanDate(previousReservations[i].begin_at), previousReservations[i].duration, "no");
         }
+    }
+
+    async function cancelReservation(id){
+        let url = '/api/reservations/cancel';
+        let userId;
+        let result = await fetch(url,
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    id:id,
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        if (result.status === 200) {
+            document.getElementById("current").style.display = "none";
+        } else return null;
     }
 </script>
 </body>
