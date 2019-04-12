@@ -1,25 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Map</title>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map {
-            height: 100%;
-        }
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../stylesheets/burger.css">
+        <link rel="stylesheet" href="../stylesheets/grid.css">
+        <link rel="stylesheet" href="../stylesheets/fonts.css">
+        <link rel="stylesheet" href="../stylesheets/media-queries.css">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <title>Map</title>
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+    
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <link rel="stylesheet" href="../stylesheets/carousel.css">
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+        <meta charset="UTF-8">
+    <title>Hello</title>
 </head>
 <body>
+    <div id="menu_resp" class="pure-g">
+        <div class="pure-u-1-3">
+                <nav role="navigation">
+                        <div id="menuToggle">
+                                <input type="checkbox" />
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <ul id="menu">
+                                  <p class="welcome_text">Hi!</p>
+                                  
+                                  <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                  <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>
+                                  <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                  <a class="active" onclick="return logout()"></a><li>Logout</li></a>
+                                </ul>
+                              </div>
+        </div>
+        <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+  
+        <div class="pure-u-1-3">
+        </div>
+      </div>
+      <div id="menu_resp2" class="pure-g">   
+          <div class="pure-u-1-3">
+              <nav role="navigation">
+                      <div id="menuToggle">
+                              <input type="checkbox" />
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <ul id="menu">
+                                <p class="welcome_text">Hi!</p>
+                                <p id="firstname_print"></p>
+                                <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                <a href="/login" target="_blank"><li id="menu_content">Sign Out</li></a>
+                                <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
+                              </ul>
+                            </div>
+      </div>
+          <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+  
+          <div class="pure-u-1-3">
+          </div>
+        </div>
+        
 <div id="map"></div>
 <script>
 
