@@ -1,72 +1,127 @@
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BeClou</title>
-    <link rel="stylesheet" type="text/css" href="../stylesheets/stylebooking.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styleresa.css">
     <link rel="stylesheet" href="../stylesheets/burger.css">
     <link rel="stylesheet" href="../stylesheets/grid.css">
     <link rel="stylesheet" href="../stylesheets/fonts.css">
-    <link rel="stylesheet" href="../stylesheets/carousel.css">
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="../stylesheets/media-queries.css">
+
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  </head>
-  <body>
-      <div class="pure-g">
-          <div class="pure-u-1-3">
-                  <nav role="navigation">
-                          <div id="menuToggle">
-                                  <input type="checkbox" />
-                                  <span></span>
-                                  <span></span>
-                                  <span></span>
-                                  <ul id="menu">
-                                    <p class="welcome_text">Hi!</p>
-                                    <a href="../views/booking.html"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
-                                    <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>                                          <a href="../views/qrcode.html" ><li id="menu_content"><img id="icon_menu" src="../images/qr-code.png">Scan a QR Code</li></a>
+</head>
+<body>
+    <div id="menu_resp" class="pure-g">
+        <div class="pure-u-1-3">
 
-                                    <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
-                                    <a href="https://erikterwan.com/" target="_blank"><li id="menu_content">Sign Out</li></a>
-                                  </ul>
-                                </div>
-          </div>
-          <a class="pure-u-1-3"  href="index.html"><div id="logoContainer"><p></p></div></a>
-
-          <div class="pure-u-1-3">
-          </div>
-      </div>
-    <section id="booking_container" class="content_app">
-      
-      <div class="title explain">
-        <h1>Booking infos</h1>
-        <p>Choose your time and enjoy your ride.</p>
-      </div>
-      <div class="picture">
-        <img src="../images/group-41-copy-3.svg" alt="">
-      </div>
-    <div class="bouttons-paiement">
-        <!-- <button type="button" name="paiement">€1 - 1 hours</button>
-        <button type="button" name="cancel">€11 - 12 hours</button>
-        <button type="button" name="cancel">€20 - 24 hours</button>-->
-        <a href='#target1' id='target1' class='target'>€1 - 1 hours</a>
-        <a href='#target2' id='target2' class='target'>€11 - 12 hours</a>
-        <a href='#target3' id='target3' class='target'>€20 - 24 hours</a>
-      </div> 
-      <div class="start">
-          <img  width="25" style="margin-left: 20px" src="../images/calque-1@3x.png">
-        <div class="left-start">
-          <img src="img/velostart.png" alt="">
-          <p>Take this bike</p>
         </div>
-        <div class="right-start">
-          <a href="../views/map.html">Start !</a>
+        <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+
+        <div class="pure-u-1-3">
         </div>
       </div>
+      <div id="menu_resp2" class="pure-g">
+        <div class="pure-u-1-3">
 
-    </section>
-  </body>
+    </div>
+        <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+
+        <div class="pure-u-1-3">
+        </div>
+      </div>
+<section>
+    <div class="title explain">
+        <h1>Reservation</h1>
+        <p>Enter informations to book your bike.</p>
+    </div>
+    <div class="info_content" id="resa">
+            <input type="number" min="1" max="24" name="duree" placeholder="Duration" id="duration"/>
+            <input type="datetime-local" name="datetime" placeholder="Date" id="date"/>
+            <button onclick="bookBike()" type="button" name="button" >Book</button>
+      </div>
+      <div class="data_info" id="info_reservation">
+
+      </div>
+</section>
+<script>
+      function createInfo(firstName, lastName, email, price, duration, date) {
+        return `<p>First Name : ${firstName}</p>`+`
+        <p>Last Name : ${lastName}</p>`+`
+        <p>Email : ${email}</p>`+`
+        <p>Duration : ${duration} H</p>`+`
+        <p>Price : ${price} €</p>`+`
+        <p>Date: ${date.replace('T', '     ')}</p>`
+      }
+
+
+
+      function getUrlParameter(name) {
+          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(location.search);
+          return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      };
+
+
+      async function getuserIdBySession() {
+          let url = '/api/users/session';
+          let userId;
+          let result = await fetch(url,
+              {
+                  method: 'GET'
+              });
+          if (result.status === 200) {
+              userId = await result.json();
+              return userId.id;
+          } else return null;
+      }
+
+      async function bookBike() {
+          let bikeId = getUrlParameter("id");
+          let userId = await getuserIdBySession();
+          let url;
+          url = '/api/reservations/create';
+          let date = document.getElementById('date').value;
+          let duration = document.getElementById('duration').value;
+          console.log(bikeId, userId, duration);
+          let data = {
+              bikeId: bikeId,
+              userId: userId,
+              duration: duration,
+              beginAt: "2019-05-05 22:22:22"
+          };
+          console.log(data);
+
+          result = await fetch(url,
+              {
+                  method: 'POST',
+                  body: JSON.stringify(data),
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              }
+          );
+          if (result.status === 200) {
+            console.log('ok');
+            let user = await getUserInfo();
+              document.getElementById('resa').style.display = "none";
+              document.getElementById('info_reservation').innerHTML = createInfo(user.firstname, user.lastname, user.email, duration, duration, date);
+          } else alert("Reservation failed")
+      }
+      async function getUserInfo() {
+        let url = '/api/users/session';
+        let result = await fetch(url,
+          {
+            method: 'GET'
+          }
+        );
+        let user = await result.json();
+        console.log(user);
+        return user;
+      }
+
+</script>
+</body>
 </html>
