@@ -25,13 +25,14 @@
                               <span></span>
                               <span></span>
                               <ul id="menu">
-                                <p class="welcome_text">Hi!</p>
-                                
-                                <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
-                                <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>
-                                <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
-                                <a class="active" onclick="return logout()"></a><li>Logout</li></a>
-                              </ul>
+                              <p class="welcome_text">Hi!</p>
+                              <p id="firstname_print"></p>
+                              <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                              <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                              <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
+
+                              <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
+                            </ul>
                             </div>
       </div>
       <div class="pure-u-1-3" id="logoContainer"><p></p></div>
@@ -52,8 +53,9 @@
                               <p id="firstname_print"></p>
                               <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
                               <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
-                              <li class="logout_button"><a href="/qr">Scan your bike</a></li>
-                              <li class="logout_button"><a href="" onclick="return logout()">Logout</a></li>
+                              <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
+
+                              <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
                             </ul>
                           </div>
     </div>
