@@ -44,9 +44,9 @@
     // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
     // du coup si y a eu un 200, on peut continuer notre script
     // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
-        if (res.status === 200 && resUpdateRes.status === 200) {
+        if (resUpdateRes.status === 200) {
             window.location.href = "/";
-        } else alert(res.status + " " + await res.text() + " " + resUpdateRes.status + " " + await resUpdateRes.text());
+        } else alert(resUpdateRes.status + " " + await resUpdateRes.text());
     }
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');

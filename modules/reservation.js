@@ -46,6 +46,7 @@ class Reservation {
     }
 
     async updateStatus(id, status) {
+        console.log("id de la reservation : " + id);
         let bikeId = await this.getBike(id);
         if (status === 3) {
             await this.bike.updateBikeStatus(bikeId, 1);
