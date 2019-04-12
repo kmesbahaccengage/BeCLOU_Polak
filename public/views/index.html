@@ -30,7 +30,6 @@
                                 <a href="../views/booking.html"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
                                 <a href="../views/signin.html" ><li id="menu_content"><img id="icon_menu" src="../images/group-2@3x.png">Signin / Connexion</li></a>
                                 <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
-                                <a href="https://erikterwan.com/" target="_blank"><li id="menu_content">Sign Out</li></a>
                                 <a class="active" onclick="return logout()"></a><li>Logout</li></a>
                               </ul>
                             </div>
@@ -50,11 +49,11 @@
                             <span></span>
                             <ul id="menu">
                               <p class="welcome_text">Hi!</p>
-                              <p id="firstname"></p>
+                              <p id="firstname_print"></p>
                               <a href="/booking"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
                               <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
                               <a href="/login" target="_blank"><li id="menu_content">Sign Out</li></a>
-                              <li><a class="active" onclick="return logout()">Logout</a></li>
+                              <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
                             </ul>
                           </div>
     </div>
@@ -153,7 +152,7 @@
              
              if (res.status === 200) {
               let response = await res.json();
-                document.getElementById("firstname").innerHTML = response.firstname;
+                document.getElementById("firstname_print").innerHTML = response.firstname;
                 console.log(response.msg.firstname); 
             } else alert(res.status + " " + res.text());
             return false;
