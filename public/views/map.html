@@ -268,21 +268,6 @@
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
-        // Info window content
-        var infoWindowContent = [
-            ['<div class="info_content">' +
-            '<p>Vélo numéro 1.</p>' + '</div>' +
-            '<a href="#">Réservez ce vélo</a>'],
-            ['<div class="info_content">' +
-            '<p>Vélo numéro 2.</p>' +
-            '</div>' +
-            '<a href="#">Réservez ce vélo</a>'],
-            ['<div class="info_content">' +
-            '<p>Vélo numéro 3.</p>' +
-            '</div>' +
-            '<a href="#">Réservez ce vélo</a>']
-        ];
-        console.log('pd ::' + infoWindowContent);
         // Add multiple markers to map
         var infoWindow = new google.maps.InfoWindow(), marker, i;
         var bounds = new google.maps.LatLngBounds();
