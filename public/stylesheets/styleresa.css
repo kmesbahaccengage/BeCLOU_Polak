@@ -105,6 +105,34 @@ section{
   display: flex;
 }
 
+/**
+*
+* Order
+*
+**/
+.current h2,
+.last_resa h2{
+  font-family: 'Poppins', sans-serif;
+  color: #555555;
+  border-bottom: 1px solid #555555;
+}
+.current_resa{
+  color: rgb(186, 180, 62);
+  width: 100%;
+  height: 20px;
+}
+.histo_resa{
+  color: rgb(16, 66, 128);
+  width: 100%;
+  height: 20px;
+}
+
+
+/**
+*
+*
+*
+**/
 @media all and (max-width: 800px){
             .info_content input{
               width: 75%;
