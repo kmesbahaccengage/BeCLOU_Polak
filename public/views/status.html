@@ -86,8 +86,8 @@
 <script>
     getBikesByDistrict();
 
-    function getStatusTemplate(color) {
-        return `<div style="background-color: ${color}"></div>`;
+    function getStatusTemplate(color, arr) {
+        return `<div class="carre"><p>District ${arr}</p><div class="rondrouge" style="background-color: ${color}"></div></div>`;
     }
 
     async function getBikesByDistrict() {
@@ -106,9 +106,9 @@
         }
         for (let i = 0; i < bikesAvailablePerDistrict.length; i++) {
             if (bikesAvailablePerDistrict[i] < 5) {
-                document.getElementById('districtstatus').innerHTML += getStatusTemplate('red');
+                document.getElementById('district_status').innerHTML += getStatusTemplate('red', i);
                 alert("pas assez de vélo dans l'arrondissement " + i);
-            } else document.getElementById('tonid').innerHTML += getStatusTemplate('green');
+            } else document.getElementById('district_status').innerHTML += getStatusTemplate('green', i);
         }
     }
 </script>
