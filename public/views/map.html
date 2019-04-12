@@ -320,6 +320,8 @@
             // Center the map to fit all markers on the screen
             map.fitBounds(bounds);
         }
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
         // Set zoom level
         let boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {

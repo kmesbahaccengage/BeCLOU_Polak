@@ -14,10 +14,10 @@ class Reservation {
     async createReservation(userId, bikeId, beginAt, duration) {
         let bikeStatus = await this.bike.getBikeStatus(bikeId);
         let lastUserReservation = await this.getLastReservationByUserId(userId);
-        if (bikeStatus[0].status !== 1){
+        if (bikeStatus[0].status !== 1) {
             console.log("Bike already booked");
             return false;
-        } else if (lastUserReservation[0].status >= 3){
+        } else if (lastUserReservation[0].status >= 3) {
             console.log("User " + userId + "can not reserve more than one bike");
             return false;
         }
@@ -32,26 +32,27 @@ class Reservation {
         return reservation;
     }
 
-    async cancelReservation(id){
+    async cancelReservation(id) {
         let status = await this.getStatus(id);
         status = status[0].status;
         let bikeId = await this.getBike(id);
-        if (status !== 1){
+        if (status !== 1) {
             return false
         }
         await this.updateStatus(id, 4);
         await this.bike.updateBikeStatus(bikeId, 1);
         return true;
     }
+
     async updateStatus(id, status) {
         let bikeId = await this.getBike(id);
-        if (status === 3){
+        if (status === 3) {
             await this.bike.updateBikeStatus(bikeId, 1);
         }
         let query = `update reservations set status = ${status} where id = ${id}`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
-                if(err) resolve(false);
+                if (err) resolve(false);
                 resolve(result);
             });
         });
@@ -153,7 +154,7 @@ class Reservation {
         return reservations;
     }
 
-    async getCurrentReservations(){
+    async getCurrentReservations() {
         let query = `select * from reservations where status < 3`;
         let reservations = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
