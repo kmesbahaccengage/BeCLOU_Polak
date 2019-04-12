@@ -66,7 +66,7 @@ class Reservation {
         let reserv = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 if (err || result.affectedRows == 0) result = null;
-                    resolve(result);
+                resolve(result);
             });
         });
         return reserv;

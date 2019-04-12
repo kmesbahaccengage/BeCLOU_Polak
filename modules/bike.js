@@ -2,7 +2,8 @@ let DB = require('./db');
 
 class Bike {
 
-    constructor() {}
+    constructor() {
+    }
 
     // GET
     async getAllBikeByStatus(status) {
@@ -15,7 +16,7 @@ class Bike {
         });
         return bike;
     }
-    
+
     // GET
     async getBikeStatus(id) {
         let query = `SELECT status FROM bikes WHERE id = ${id}`;
@@ -55,7 +56,7 @@ class Bike {
     // POST
     async createBike(district = null, longitude = null, latitude = null) {
         let query = !district && !longitude && !latitude ?
-            `INSERT INTO bikes (status) VALUES (1)`
+                `INSERT INTO bikes (status) VALUES (1)`
             : `INSERT INTO bikes (status, district, longitude, latitude) VALUES (1, ${district}, ${longitude}, ${latitude})`;
         let bike = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
@@ -68,7 +69,7 @@ class Bike {
 
     // PUTT
     async updateBikeStatus(id, status) {
-        let query =`UPDATE bikes SET status = ${status} WHERE id = ${id}`;
+        let query = `UPDATE bikes SET status = ${status} WHERE id = ${id}`;
         let bike = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err ? resolve(false)
@@ -91,6 +92,7 @@ class Bike {
             });
         });
         return bike;
-     }
+    }
 }
+
 module.exports = Bike;

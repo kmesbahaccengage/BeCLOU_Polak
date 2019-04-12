@@ -4,7 +4,7 @@ class DB {
     constructor() {
     }
 
-     static get connection() {
+    static get connection() {
         return mysql.createConnection({
             host: "localhost",
             user: "khaled",
@@ -20,4 +20,5 @@ class DB {
         });
     };
 }
+
 module.exports = DB;

@@ -23,7 +23,7 @@ module.exports = {
             case 'updatelocalisation':
                 result = await bike.updateBikeLocalisation(id, district, longitude, latitude);
                 message = "Updated localisation of bike with id : " + id;
-                error = "Couldn't update localisation of bike with id : " + id;  
+                error = "Couldn't update localisation of bike with id : " + id;
                 break;
             default:
                 result = {};
@@ -31,7 +31,7 @@ module.exports = {
         }
         if (result) {
             res.set("Content-Type", "application/json");
-            res.send({ msg: message});
+            res.send({msg: message});
         } else res.status(400).send(error);
     },
     get: async function (req, res) {
@@ -41,7 +41,7 @@ module.exports = {
 
         switch (req.params.param) {
             case 'all':
-                if (req.query.status){
+                if (req.query.status) {
                     result = await bike.getAllBikeByStatus(req.query.status);
                     error = "Couldn't get all bikes with status : " + req.query.status;
                 } else {

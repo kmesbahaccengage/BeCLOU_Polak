@@ -68,7 +68,7 @@ class User {
         let response = await new Promise(async resolve => {
             let sql = `SELECT users_id FROM login where hash = \'${hash}\'`;
             DB.connection.query(sql, function (err, result, fields) {
-                if(err) throw err;
+                if (err) throw err;
                 result.length > 0 ? resolve(result[0].users_id) : resolve(0);
             });
         });

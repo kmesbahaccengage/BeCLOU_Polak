@@ -1,59 +1,59 @@
 console.log('ok');
 
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
-  let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
-  let adress = 1;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
+    let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
+    let adress = 1;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
-  let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
-  let adress = 2;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
+    let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
+    let adress = 2;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
-  let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
-  let adress = 3;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
+    let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
+    let adress = 3;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
-  let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
-  let adress = 4;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
+    let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
+    let adress = 4;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
-  let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
-  let adress = 5;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
+    let longitude = Math.random() * (48.898014 - 48.878024) + 48.878024;
+    let adress = 5;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 /*
 for (var i = 0; i < 100; i++) {
@@ -73,59 +73,59 @@ for (var i = 0; i < 100; i++) {
   console.log(rand);
 }*/
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
-  let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
-  let adress = 6;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
+    let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
+    let adress = 6;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
-  let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
-  let adress = 7;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
+    let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
+    let adress = 7;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
-  let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
-  let adress = 8;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
+    let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
+    let adress = 8;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
-  let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
-  let adress = 9;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
+    let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
+    let adress = 9;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
-  let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
-  let adress = 10;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
+    let longitude = Math.random() * (48.878024 - 48.859842) + 48.859842;
+    let adress = 10;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 
 /*
@@ -150,59 +150,59 @@ for (var i = 0; i < 100; i++) {
   console.log(rand);
 }*/
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
-  let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
-  let adress = 11;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
+    let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
+    let adress = 11;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
-  let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
-  let adress = 12;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
+    let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
+    let adress = 12;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
-  let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
-  let adress = 13;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
+    let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
+    let adress = 13;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
-  let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
-  let adress = 14;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
+    let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
+    let adress = 14;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
-  let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
-  let adress = 15;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
+    let longitude = Math.random() * (48.859842 - 48.842224) + 48.842224;
+    let adress = 15;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 
 /*
@@ -227,59 +227,59 @@ for (var i = 0; i < 100; i++) {
   console.log(rand);
 }*/
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
-  let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
-  let adress = 16;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.299194 - 2.262474) + 2.262474;
+    let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
+    let adress = 16;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
-  let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
-  let adress = 17;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.329755 - 2.299194) + 2.299194;
+    let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
+    let adress = 17;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
-  let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
-  let adress = 18;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.359279 - 2.329755) + 2.329755;
+    let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
+    let adress = 18;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
-  let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
-  let adress = 19;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.388116 - 2.359279) + 2.359279;
+    let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
+    let adress = 19;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 for (var i = 0; i < 100; i++) {
-  let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
-  let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
-  let adress = 20;
-  rand = {
-    latitude: latitude,
-    longitude: longitude,
-    district: adress
-  };
-  console.log(rand);
+    let latitude = Math.random() * (2.409915 - 2.388116) + 2.388116;
+    let longitude = Math.random() * (48.842224 - 48.822114) + 48.822114;
+    let adress = 20;
+    rand = {
+        latitude: latitude,
+        longitude: longitude,
+        district: adress
+    };
+    console.log(rand);
 }
 
 /*
