@@ -133,7 +133,9 @@
                 currentReservation = reservations[i];
             } else previousReservations.push(reservations[i]);
         }
-        document.getElementById("current_resa").innerHTML = getReservationTemplate(cleanDate(currentReservation.begin_at), currentReservation.duration, "yes", currentReservation.id, currentReservation.status);
+        if(currentReservation){
+            document.getElementById("current_resa").innerHTML = getReservationTemplate(cleanDate(currentReservation.begin_at), currentReservation.duration, "yes", currentReservation.id, currentReservation.status);
+        }
         for (let i = 0; i < previousReservations.length; i++){
             document.getElementById("histo_resa").innerHTML += getReservationTemplate(cleanDate(previousReservations[i].begin_at), previousReservations[i].duration, "no");
         }
