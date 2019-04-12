@@ -84,6 +84,20 @@ app.get('/map', function (req, res) {
         res.sendFile(path.join(__dirname + '/public/views/map.html'));
 });
 
+app.get('/order', function (req, res) {
+    if (!req.session.uid) {
+        res.redirect('/login');
+    } else
+        res.sendFile(path.join(__dirname + '/public/views/order.html'));
+});
+
+app.get('/status', function (req, res) {
+    if (!req.session.uid) {
+        res.redirect('/login');
+    } else
+        res.sendFile(path.join(__dirname + '/public/views/status.html'));
+});
+
 app.get('/finish', function (req, res) {
     if (!req.session.uid) {
         res.redirect('/login');

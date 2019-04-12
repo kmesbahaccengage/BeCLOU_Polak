@@ -41,6 +41,7 @@ header{
 section{
   padding-left: 15%;
   background-color: #eff1f5;
+  padding-bottom: 100px;
 }
 
 .title{
@@ -73,22 +74,45 @@ section{
         flex-direction: column;
         justify-content: center;
         width: 85%;
+        padding-bottom: 100px;
       }
       .info_content input{
         width: 30%;
         margin: 0 auto;
         margin-bottom: 20px;
         padding: 10px 10px;
+        font-family: 'Poppins', sans-serif;
       }
       .info_content button{
         width: 20%;
-        padding: 5px 5px;
+        padding: 5px 15px;
         margin: 0 auto;
+        border: none;
+        background-color: #2fba24;
+        opacity: 1;
+        padding: 10px 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+      }
+
+      .data_info p{
+        font-family: 'Poppins', sans-serif;
+        color: #555555;
       }
 
 #resa{
   display: flex;
 }
+
+@media all and (max-width: 800px){
+            .info_content input{
+              width: 75%;
+            }
+            .info_content button{
+              width: 50%;
+            }
+        }
 
 /**
 *
