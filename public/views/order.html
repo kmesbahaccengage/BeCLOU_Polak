@@ -42,13 +42,13 @@
         </div>
         <div class="current">
           <h2>My current reservation</h2>
-          <div class="current_resa">
+          <div class="current_resa" id="current_resa">
 
           </div>
         </div>
         <div class="last_resa">
           <h2>My previous reservation</h2>
-          <div class="histo_resa">
+          <div class="histo_resa" id="histo_resa">
 
           </div>
         </div>
@@ -57,5 +57,53 @@
 
       </div>
 </section>
+<script>
+    getReservations();
+
+    function cleanDate(date){
+        date = date.replace('T', ' ');
+        date = date.slice(0, 10);
+        return date;
+    }
+
+    function getReservationTemplate(date, prix, current){
+        if (current === "yes"){
+            return `<div><p>${date}</p><p>${prix} €</p><button onclick="cancelReservation()">Cancel</button></div>`
+        } else return `<div><p>${date}</p><p>${prix} €</p></div>`
+    }
+
+    async function getUserIdBySession() {
+        let url = '/api/users/session';
+        let userId;
+        let result = await fetch(url,
+            {
+                method: 'GET'
+            });
+        if (result.status === 200) {
+            userId = await result.json();
+            return userId.id;
+        } else return null;
+    }
+
+    async function getReservations() {
+        let userId = await getUserIdBySession();
+        let url = '/api/reservations/all?user_id=' + userId;
+        let result = await fetch(url, {
+            method: 'GET'
+        });
+        reservations = await result.json();
+        let currentReservation;
+        let previousReservations = [];
+        for (let i = 0; i < reservations.length; i++){
+            if (reservations[i].status < 3){
+                currentReservation = reservations[i];
+            } else previousReservations.push(reservations[i]);
+        }
+        document.getElementById("current_resa").innerHTML = getReservationTemplate(cleanDate(currentReservation.begin_at), currentReservation.duration, "yes");
+        for (let i = 0; i < previousReservations.length; i++){
+            document.getElementById("histo_resa").innerHTML = getReservationTemplate(cleanDate(previousReservations[i].begin_at), currentReservation.duration, "no");
+        }
+    }
+</script>
 </body>
 </html>
