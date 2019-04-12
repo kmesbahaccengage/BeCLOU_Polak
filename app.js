@@ -61,6 +61,10 @@ app.get('/map', function(req, res){
     res.sendFile(path.join(__dirname + '/public/views/map.html'));
 });
 
+app.get('/finish', function(req, res){
+    res.sendFile(path.join(__dirname + '/public/views/finish.html'));
+});
+
 // Set les routes pour les API GET
 let users = require('./routes/api/users');
 app.route('/api/users/:param')
