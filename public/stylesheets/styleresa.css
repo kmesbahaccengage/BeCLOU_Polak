@@ -104,7 +104,48 @@ section{
 #resa{
   display: flex;
 }
+.current{
+    margin-bottom: 50px;
+}
+.this_current{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.this_current p{
+    font-family: 'Poppins', sans-serif;
+    color: #555555;
+    margin-right: 50px;
+}
+.this_past{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #555555;
+}
 
+.section_history{
+    padding-left: 15%;
+    background-color: #FFF;
+}
+
+.this_past p{
+    font-family: 'Poppins', sans-serif;
+    color: #555555;
+    margin-right: 50px;
+}
+.this_current button{
+    width: 20%;
+    padding: 5px 15px;
+    border: none;
+    margin: 0;
+    background-color: #2fba24;
+    opacity: 1;
+    padding: 10px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
 /**
 *
 * Order
