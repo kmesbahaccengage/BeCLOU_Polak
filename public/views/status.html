@@ -6,13 +6,13 @@
 </head>
 <body>
 <script>
-    getBikesByDistrcit();
+    getBikesByDistrict();
 
     function getStatusTemplate(color) {
         return `<div style="background-color: ${color}"></div>`;
     }
 
-    async function getBikesByDistrcit() {
+    async function getBikesByDistrict() {
         let url = '/api/bikes/all?status=1';
         let result = await fetch(url, {
             method: 'GET'
