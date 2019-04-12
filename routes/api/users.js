@@ -34,8 +34,7 @@ module.exports = {
                 if (result) {
                     req.session.uid = result.id;
                     res.set("Content-Type", "application/json");
-                    res.send({msg: "User logged"});
-                    console.log(result);
+                    res.send({msg: "User with id : " + result.id + "logged"});
                     // res.session.uid = result.id;
                 } else res.status(400).send("Error login");
                 break;
@@ -44,7 +43,7 @@ module.exports = {
                 try {
                     req.session.destroy();
                     res.set("Content-Type", "application/json");
-                    res.send({msg: "User logged out"});
+                    res.send({msg: "User with id : "+ req.session.uid + " logged out"});
                 } catch (err) {
                     res.status(400).send("Error destroyed session");
                 }

@@ -320,6 +320,8 @@
             // Center the map to fit all markers on the screen
             map.fitBounds(bounds);
         }
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
         // Set zoom level
         let boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
@@ -344,6 +346,8 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAwxMsnJPAeam7mp7wfx-PnOhLkiLxK6s&callback=initMap">
 </script>
 <script>
+    '<button href="bookBike(' + id + ')" type="button" name="button" >Book</button>';
+
     function getInfoWindow(id) {
         return '<div class="info_content">' +
             '<input type="number" min="1" max="24" name="duree" placeholder="Duration" id="duration"/>' + '</div>' +
