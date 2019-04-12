@@ -52,7 +52,7 @@
                                       <span></span>
                                       <ul id="menu">
                                         <p class="welcome_text">Hi!</p>
-                                        <p id="firstname_print"></p>
+                                        <p id="firstname_printmin"></p>
                                         <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
                                         <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
                                         <a href="/order"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
@@ -96,6 +96,28 @@
 <script>
     getReservations();
 
+    filler();
+    async function filler(){
+        // on set l'url de l'api register
+        let url = '/api/users/session';
+        // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
+        // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
+        let res =  await fetch(url, {
+            method: 'GET',
+        });
+        // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
+        // du coup si y a eu un 200, on peut continuer notre script
+        // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
+
+        if (res.status === 200) {
+
+            let response = await res.json();
+            document.getElementById("firstname_printmin").innerHTML = response.firstname;
+            document.getElementById("firstname_print").innerHTML = response.firstname;
+
+        } else alert(res.status + " " + res.text());
+        return false;
+    }
     function cleanDate(date){
         date = date.replace('T', ' ');
         date = date.slice(0, 10);
