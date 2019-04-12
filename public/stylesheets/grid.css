@@ -8,6 +8,17 @@
     position: relative;
 }
 
+section{
+    margin-top: 50px;
+}
+
+#to_index {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .logout_button {
     border: none;
     background-color: #2fba24;
