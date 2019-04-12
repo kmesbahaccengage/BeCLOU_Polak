@@ -58,7 +58,7 @@
                 <span></span>
                 <ul id="menu">
                     <p class="welcome_text">Hi!</p>
-                    <p id="firstname_print"></p>
+                    <p id="firstname_printmin"></p>
                     <a href="/map">
                         <li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li>
                     </a>
@@ -98,9 +98,31 @@
 </body>
 <script>
     getBikesByDistrict();
+    filler();
+    async function filler(){
+        // on set l'url de l'api register
+        let url = '/api/users/session';
+        // on procède au call api en précisant la METHOD et en envoyant comme body l'objet data en json string que l'on a cré plus haut
+        // on précise aussi le contenu du body dans le header en lui disant qu'il va recevoir du json
+        let res =  await fetch(url, {
+            method: 'GET',
+        });
+        // dès que l'appel est terminé, on check le status de la réponse, si 200 c'est que tout s'est bien passé
+        // du coup si y a eu un 200, on peut continuer notre script
+        // si autre que 200, y a eu une erreur et on doit le refaire faire le formulaire d'inscription
 
-    function getStatusTemplate(color, arr) {
-        return `<div class="carre"><p>District ${arr}</p><div class="rondrouge" style="background-color: ${color}"></div></div>`;
+        if (res.status === 200) {
+
+            let response = await res.json();
+            document.getElementById("firstname_printmin").innerHTML = response.firstname;
+            document.getElementById("firstname_print").innerHTML = response.firstname;
+
+        } else alert(res.status + " " + res.text());
+        return false;
+    }
+
+    function getStatusTemplate(color, arr, nbBikes) {
+        return `<div class="carre"><p>District ${arr}: There is ${nbBikes}</p><div class="rondrouge" style="background-color: ${color}"></div></div>`;
     }
 
     async function getBikesByDistrict() {
@@ -117,11 +139,10 @@
                     : bikesAvailablePerDistrict[bikes[i].district] = 1;
             }
         }
-        console.log("hello");
-        for (let i = 0; i < bikesAvailablePerDistrict.length; i++) {
-            if (bikesAvailablePerDistrict[i] < 5) {
-                document.getElementById('district_status').innerHTML += getStatusTemplate('red', i);
-            } else document.getElementById('district_status').innerHTML += getStatusTemplate('green', i);
+        for (let i = 1; i < bikesAvailablePerDistrict.length; i++) {
+            if (bikesAvailablePerDistrict[i] < 5 ) {
+                document.getElementById('district_status').innerHTML += getStatusTemplate('red', i, bikesAvailablePerDistrict[i]);
+            } else document.getElementById('district_status').innerHTML += getStatusTemplate('green', i, bikesAvailablePerDistrict[i]);
         }
     }
 </script>
