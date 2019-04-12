@@ -6,12 +6,33 @@
 </head>
 <body>
 <script>
+    getBikesByDistrcit();
+
+    function getStatusTemplate(color) {
+        return `<div style="background-color: ${color}"></div>`;
+    }
+
     async function getBikesByDistrcit() {
-        let url = '/api/bikes/all';
+        let url = '/api/bikes/all?status=1';
         let result = await fetch(url, {
             method: 'GET'
         });
-        
+        let bikes = await result.json();
+        let bikesAvailablePerDistrict = [];
+        for (let i = 0; i < bikes.length; i++) {
+            if (bikes[i].status === 1) {
+                bikesAvailablePerDistrict[bikes[i].district] ?
+                    bikesAvailablePerDistrict[bikes[i].district]++
+                    : bikesAvailablePerDistrict[bikes[i].district] = 1;
+            }
+        }
+        for (let i = 0; i < bikesAvailablePerDistrict.length; i++) {
+            if (bikesAvailablePerDistrict[i] < 5) {
+                document.getElementById('tonid').innerHTML += getStatusTemplate('red');
+                alert("pas assez de vélo dans l'arrondissement " + i);
+            } else document.getElementById('tonid').innerHTML += getStatusTemplate('green');
+
+        }
     }
 </script>
 </body>
