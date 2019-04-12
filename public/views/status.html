@@ -1,10 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BeClou</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styleresa.css">
+    <link rel="stylesheet" href="../stylesheets/burger.css">
+    <link rel="stylesheet" href="../stylesheets/grid.css">
+    <link rel="stylesheet" href="../stylesheets/fonts.css">
+    <link rel="stylesheet" href="../stylesheets/media-queries.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
+  <div id="menu_resp" class="pure-g">
+    <div class="pure-u-1-3">
+            <nav role="navigation">
+                    <div id="menuToggle">
+                            <input type="checkbox" />
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <ul id="menu">
+                                <p class="welcome_text">Hi!</p>
+                                <p id="firstname_print"></p>
+                                <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                                <a href="#"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                                <a href="/order"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
+
+                                <li class="logout_button"><a href="/qr">Scan your bike</a></li>
+                                <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
+                              </ul>
+                          </div>
+    </div>
+    <div class="pure-u-1-3" id="logoContainer"><p></p></div>
+
+    <div class="pure-u-1-3">
+    </div>
+  </div>
+  <div id="menu_resp2" class="pure-g">   
+      <div class="pure-u-1-3">
+          <nav role="navigation">
+                  <div id="menuToggle">
+                          <input type="checkbox" />
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <ul id="menu">
+                            <p class="welcome_text">Hi!</p>
+                            <p id="firstname_print"></p>
+                            <a href="/map"><li id="select_bike"><img id="bikeicon" src="../images/calque-1@3x.png"><br>Take a bike</li></a>
+                            <a href="/"><li id="menu_content"><img id="icon_menu" src="../images/information@3x.png">How it works ?</li></a>
+                            <a href="/order"><li id="menu_content"><img id="icon_menu" src="../images/list.png">Your orders</li></a>
+
+                            <li class="logout_button"><a href="/qr">Scan your bike</a></li>
+                            <li class="logout_button"><a class="active" onclick="return logout()">Logout</a></li>
+                          </ul>
+                        </div>
+  </div>
+  <a class="pure-u-1-3" id="to_index" href="/"> 
+  <div class="pure-u-1-3" id="logoContainer">
+     </div>
+    </a> 
+      <div class="pure-u-1-3">
+      </div>
+    </div>
+<section>
+    <div class="info_content" id="resa">
+        <div class="title explain">
+          <h1>Reservation</h1>
+          <p>Your history.</p>
+        </div>
+        <div id="district_status" class="current">
+
+        </div>
+    </div>
+      <div class="data_info" id="info_reservation">
+
+      </div>
+</section>
+</body>
 <script>
     getBikesByDistrict();
 
@@ -28,10 +106,9 @@
         }
         for (let i = 0; i < bikesAvailablePerDistrict.length; i++) {
             if (bikesAvailablePerDistrict[i] < 5) {
-                document.getElementById('tonid').innerHTML += getStatusTemplate('red');
+                document.getElementById('districtstatus').innerHTML += getStatusTemplate('red');
                 alert("pas assez de vélo dans l'arrondissement " + i);
             } else document.getElementById('tonid').innerHTML += getStatusTemplate('green');
-
         }
     }
 </script>
