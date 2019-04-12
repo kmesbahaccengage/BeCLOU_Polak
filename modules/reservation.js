@@ -12,9 +12,13 @@ class Reservation {
     }
 
     async createReservation(userId, bikeId, beginAt, duration) {
-        let bikeStatus = await this.bike.getBikeStatus(bikeId)
+        let bikeStatus = await this.bike.getBikeStatus(bikeId);
+        let lastUserReservation = await this.getLastReservationByUserId(userId);
         if (bikeStatus[0].status !== 1){
-            console.log("on sors");
+            console.log("Bike already booked");
+            return false;
+        } else if (lastUserReservation[0].status >= 3){
+            console.log("User " + userId + "can not reserve more than one bike");
             return false;
         }
         await this.bike.updateBikeStatus(bikeId, 2);
