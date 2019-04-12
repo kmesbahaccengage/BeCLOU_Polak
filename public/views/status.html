@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-
+<script>
+    async function getBikesByDistrcit() {
+        let url = '/api/bikes/all';
+        let result = await fetch(url, {
+            method: 'GET'
+        });
+        
+    }
+</script>
 </body>
 </html>
