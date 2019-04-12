@@ -7,8 +7,8 @@ class DB {
     static get connection() {
         return mysql.createConnection({
             host: "localhost",
-            user: "khaled",
-            password: "mysql",
+            user: "ismael",
+            password: "password",
             database: "mydb"
         });
     }
