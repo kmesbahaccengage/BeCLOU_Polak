@@ -77,6 +77,8 @@ module.exports =
                 case 'current':
                     result = await reserv.getCurrentReservations();
                     break;
+                case 'reservationByBike':
+                    result = await reserv.getCurrentReservationByBikeId(req.query.bike_id);
                 case 'all':
                     if (!req.query.user_id)
                         result = await reserv.getAllReservations();

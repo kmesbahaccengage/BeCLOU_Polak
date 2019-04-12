@@ -53,6 +53,11 @@ app.get('/unlock', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/views/unlock.html'));
 });
 
+app.get('/booking', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/booking.html'));
+});
+
+
 app.get('/qr', function(req, res){
     res.sendFile(path.join(__dirname + '/public/views/qrcode.html'));
 });

@@ -4,8 +4,7 @@
 
 #logoContainer {
     background: url(../images/group-19.svg) no-repeat center center;
-    width: 100%;
-    /* height: 50%; */
+
     position: relative;
 }
 
