@@ -129,6 +129,32 @@ section{
     background-color: #FFF;
 }
 
+.carre p{
+    margin: 0;
+    vertical-align: center;
+}
+
+.carre{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    color: #555555;
+    border: 1px solid #555555;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    vertical-align: center;
+    padding: 10px;
+}
+
+.rondrouge{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+}
+
 .this_past p{
     font-family: 'Poppins', sans-serif;
     color: #555555;
@@ -182,7 +208,11 @@ section{
               width: 50%;
             }
         }
-
+@media all and (max-width: 600px){
+    .carre{
+        width: 75%;
+    }
+}
 /**
 *
 * Info de la reservation
