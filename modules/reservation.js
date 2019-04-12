@@ -14,8 +14,6 @@ class Reservation {
     async createReservation(userId, bikeId, beginAt, duration) {
         let bikeStatus = await this.bike.getBikeStatus(bikeId);
         let lastUserReservation = await this.getLastReservationByUserId(userId);
-        console.log("derniere reservation :", lastUserReservation);
-        console.log("statut :", lastUserReservation[0].status);
         if (bikeStatus[0].status !== 1) {
             console.log("Bike already booked");
             return false;
