@@ -14,10 +14,11 @@ class Reservation {
     async createReservation(userId, bikeId, beginAt, duration) {
         let bikeStatus = await this.bike.getBikeStatus(bikeId);
         let lastUserReservation = await this.getLastReservationByUserId(userId);
+        console.log(lastUserReservation);
         if (bikeStatus[0].status !== 1) {
             console.log("Bike already booked");
             return false;
-        } else if (lastUserReservation[0].status >= 3) {
+        } else if (lastUserReservation.length > 0 && lastUserReservation[0].status >= 3) {
             console.log("User " + userId + "can not reserve more than one bike");
             return false;
         }
@@ -52,6 +53,7 @@ class Reservation {
         let query = `update reservations set status = ${status} where id = ${id}`;
         let reservation = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
+                console.log("hello", result);
                 if (err) resolve(false);
                 resolve(result);
             });
@@ -63,8 +65,8 @@ class Reservation {
         let query = `select * from reservations where users_id = ${userId} order by id desc limit 1`;
         let reserv = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
-                if (err) result = null;
-                resolve(result);
+                if (err || result.affectedRows == 0) result = null;
+                    resolve(result);
             });
         });
         return reserv;
@@ -156,6 +158,17 @@ class Reservation {
 
     async getCurrentReservations() {
         let query = `select * from reservations where status < 3`;
+        let reservations = await new Promise(async resolve => {
+            DB.connection.query(query, function (err, result) {
+                err || !result.length ? resolve(false)
+                    : resolve(result);
+            });
+        });
+        return reservations;
+    }
+
+    async getCurrentReservationByBikeId(id) {
+        let query = `select * from reservations where bikes_id = ${id} and status = 1`;
         let reservations = await new Promise(async resolve => {
             DB.connection.query(query, function (err, result) {
                 err || !result.length ? resolve(false)
